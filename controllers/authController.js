@@ -164,8 +164,17 @@ export const loginUser = async (req, res) => {
 
       req.session.userId = adminUser.id;
       req.session.userRole = "admin";
-      logActivity("LOGIN", `User ${adminUser.name} logged in`, adminUser.id);
-      return res.redirect("/admin/dashboard");
+      
+      // Force session save before redirect
+      return req.session.save((err) => {
+        if (err) {
+          console.error("Session save error:", err);
+          req.flash("error_msg", "Session error. Please try again.");
+          return res.redirect("/login");
+        }
+        logActivity("LOGIN", `User ${adminUser.name} logged in`, adminUser.id);
+        return res.redirect("/admin/dashboard");
+      });
     }
 
     const user = await User.findOne({
@@ -193,13 +202,22 @@ export const loginUser = async (req, res) => {
 
     req.session.userId = user.id;
     req.session.userRole = user.role;
-    logActivity("LOGIN", `User ${user.name} logged in`, user.id);
-
-    if (user.role === 'admin') {
-      res.redirect("/admin/dashboard");
-    } else {
-      res.redirect("/judge/dashboard");
-    }
+    
+    // Force session save before redirect
+    req.session.save((err) => {
+      if (err) {
+        console.error("Session save error:", err);
+        req.flash("error_msg", "Session error. Please try again.");
+        return res.redirect("/login");
+      }
+      logActivity("LOGIN", `User ${user.name} logged in`, user.id);
+      
+      if (user.role === 'admin') {
+        res.redirect("/admin/dashboard");
+      } else {
+        res.redirect("/judge/dashboard");
+      }
+    });
   } catch (error) {
     console.error("Login failed:", error);
     req.flash("error_msg", "Login failed. Please verify the Supabase database connection.");
