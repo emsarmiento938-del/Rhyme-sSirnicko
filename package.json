@@ -6,6 +6,7 @@
   "scripts": {
     "xian-start": "node index.js",
     "xian": "nodemon index.js",
+    "setup": "node setup.js",
     "migrate": "node migrate.js",
     "seed": "node seed.js",
     "create:model": "node create.js model",
@@ -15,12 +16,14 @@
     "bcrypt": "^5.1.0",
     "connect-flash": "^0.1.1",
     "datatables.net-dt": "^2.3.4",
+    "dotenv": "^17.4.2",
     "express": "^4.19.2",
     "express-session": "^1.17.3",
     "hbs": "^4.2.0",
     "inquirer": "^9.2.15",
     "multer": "^2.0.2",
     "mysql2": "^3.9.2",
+    "nodemon": "^3.1.14",
     "sequelize": "^6.37.3"
   }
 }
