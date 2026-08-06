@@ -4,11 +4,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "node index.js",
     "xian-start": "node index.js",
     "xian": "nodemon index.js",
     "setup": "node setup.js",
     "migrate": "node migrate.js",
     "seed": "node seed.js",
+    "start:railway": "node railway-setup.js && node seed.js && node index.js",
+    "build": "echo 'Build step - installing dependencies'",
     "create:model": "node create.js model",
     "create:controller": "node create.js controller"
   },

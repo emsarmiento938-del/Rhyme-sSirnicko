@@ -25,11 +25,39 @@
     */
     
 import { Sequelize } from "sequelize";
+import dotenv from "dotenv";
 
-export const sequelize = new Sequelize("eventtabulationsys", "root", "", {
-  host: "localhost",
-  dialect: "mysql"
-});
+dotenv.config();
+
+// Railway MySQL provides these environment variables
+const dbConfig = {
+  database: process.env.MYSQLDATABASE || process.env.DB_NAME || "eventtabulationsys",
+  username: process.env.MYSQLUSER || process.env.DB_USER || "root",
+  password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD || "",
+  host: process.env.MYSQLHOST || process.env.DB_HOST || "localhost",
+  port: process.env.MYSQLPORT || process.env.DB_PORT || 3306,
+  dialect: "mysql",
+  logging: process.env.NODE_ENV === 'production' ? false : console.log,
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  }
+};
+
+export const sequelize = new Sequelize(
+  dbConfig.database,
+  dbConfig.username,
+  dbConfig.password,
+  {
+    host: dbConfig.host,
+    port: dbConfig.port,
+    dialect: dbConfig.dialect,
+    logging: dbConfig.logging,
+    pool: dbConfig.pool
+  }
+);
 
 export const syncDatabase = async () => {
   await sequelize.sync({ alter: false, force: false });

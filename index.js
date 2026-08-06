@@ -32,6 +32,9 @@ import fs from 'fs';
 import hbs from "hbs";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -44,9 +47,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(process.cwd(), "public")));
 
 app.use(session({
-  secret: "xianfire-secret-key",
+  secret: process.env.SESSION_SECRET || "xianfire-secret-key",
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  }
 }));
 app.use(flash());
 
