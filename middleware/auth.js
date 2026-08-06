@@ -31,6 +31,12 @@ export const requireAuth = async (req, res, next) => {
     return res.redirect("/login");
   }
 
+  if (req.session.userRole) {
+    req.user = { id: req.session.userId, role: req.session.userRole };
+    res.locals.user = req.user;
+    return next();
+  }
+
   try {
     const user = await User.findByPk(req.session.userId);
     if (!user || !user.isActive) {

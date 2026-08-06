@@ -32,7 +32,7 @@ export const Event = sequelize.define("Event", {
   date: { type: DataTypes.DATE, allowNull: false },
   venue: { type: DataTypes.STRING, allowNull: false },
   status: { 
-    type: DataTypes.STRING,
+    type: DataTypes.ENUM('upcoming', 'ongoing', 'completed', 'archived'), 
     defaultValue: 'upcoming' 
   },
   isPublic: { type: DataTypes.BOOLEAN, defaultValue: false }

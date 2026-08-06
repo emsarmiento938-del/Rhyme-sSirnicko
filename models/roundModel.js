@@ -31,7 +31,7 @@ export const Round = sequelize.define("Round", {
   description: { type: DataTypes.TEXT },
   order: { type: DataTypes.INTEGER, defaultValue: 1 },
   status: { 
-    type: DataTypes.STRING,
+    type: DataTypes.ENUM('pending', 'open', 'closed'), 
     defaultValue: 'pending' 
   },
   eventId: { 

@@ -81,7 +81,9 @@ const initializeAuthModule = async () => {
   authBootstrapPromise = (async () => {
     try {
       await sequelize.authenticate();
-      await sequelize.sync({ alter: false, force: false });
+      if (process.env.AUTO_SYNC_DB === "true") {
+        await sequelize.sync({ alter: false, force: false });
+      }
       await ensureDefaultAdmin();
       authReady = true;
       console.log("✅ Auth module initialized against Supabase DB");
@@ -94,7 +96,15 @@ const initializeAuthModule = async () => {
   return authBootstrapPromise;
 };
 
-void initializeAuthModule();
+export const ensureAuthReady = async () => {
+  if (authReady) return true;
+  try {
+    await initializeAuthModule();
+    return authReady;
+  } catch (error) {
+    return false;
+  }
+};
 
 export const loginPage = (req, res) => res.render("login", { title: "Login" });
 export const registerPage = (req, res) => res.render("register", { title: "Register" });
@@ -154,7 +164,7 @@ export const loginUser = async (req, res) => {
 
       req.session.userId = adminUser.id;
       req.session.userRole = "admin";
-      await logActivity("LOGIN", `User ${adminUser.name} logged in`, adminUser.id);
+      logActivity("LOGIN", `User ${adminUser.name} logged in`, adminUser.id);
       return res.redirect("/admin/dashboard");
     }
 
@@ -183,7 +193,7 @@ export const loginUser = async (req, res) => {
 
     req.session.userId = user.id;
     req.session.userRole = user.role;
-    await logActivity("LOGIN", `User ${user.name} logged in`, user.id);
+    logActivity("LOGIN", `User ${user.name} logged in`, user.id);
 
     if (user.role === 'admin') {
       res.redirect("/admin/dashboard");
@@ -217,7 +227,7 @@ export const registerUser = async (req, res) => {
     const user = await User.create({ name, email: normalizedEmail, password: hashed, role: 'judge' });
     req.session.userId = user.id;
     req.session.userRole = user.role;
-    await logActivity("REGISTER", `New user registered: ${user.name}`, user.id);
+    logActivity("REGISTER", `New user registered: ${user.name}`, user.id);
     res.redirect("/judge/dashboard");
   } catch (error) {
     req.flash("error_msg", "Registration failed");
@@ -227,7 +237,7 @@ export const registerUser = async (req, res) => {
 
 export const logoutUser = async (req, res) => {
   if (req.session.userId) {
-    await logActivity("LOGOUT", "User logged out", req.session.userId);
+    logActivity("LOGOUT", "User logged out", req.session.userId);
   }
   req.session.destroy();
   res.redirect("/login");

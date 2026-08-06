@@ -3,7 +3,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 
-<body class="bg-[#f4f2f9] text-gray-800 antialiased min-h-screen overflow-x-hidden">
+<body class="bg-[#f4f2f9] text-gray-800 antialiased min-h-screen overflow-x-hidden" style="will-change:auto;">
 
   <!-- Ultra Glossy iPhone 2026 Glass Background -->
   <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
@@ -22,7 +22,7 @@
   <!-- NAVBAR – Glossy Floating Glass -->
   <header class="fixed top-0 left-0 right-0 z-50">
     <div class="max-w-7xl mx-auto px-5 py-4">
-      <div class="flex items-center justify-between rounded-[22px] bg-white/55 backdrop-blur-[28px] border border-white/90 shadow-[0_8px_40px_rgba(139,92,246,0.07),inset_0_1px_0_rgba(255,255,255,0.9)] px-6 py-3.5 animate-fade-down">
+      <div class="flex items-center justify-between rounded-[22px] bg-white/80 border border-white/90 shadow-[0_6px_20px_rgba(139,92,246,0.06)] px-6 py-3.5">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 bg-gradient-to-br from-violet-500 via-purple-500 to-pink-500 rounded-[14px] flex items-center justify-center shadow-[0_4px_16px_rgba(139,92,246,0.35)]">
             <i class="fas fa-crown text-lg text-yellow-100"></i>
@@ -51,9 +51,8 @@
     <div class="w-full max-w-4xl mx-auto">
       
       <!-- Glossy Glass Container Box with subtle float -->
-      <div class="relative rounded-[36px] bg-white/55 backdrop-blur-[32px] border border-white/90 
-                  shadow-[0_20px_60px_rgba(139,92,246,0.10),0_8px_24px_rgba(236,72,153,0.06),inset_0_1px_0_rgba(255,255,255,1),inset_0_-1px_0_rgba(255,255,255,0.4)]
-                  overflow-hidden animate-hero-float">
+      <div class="relative rounded-[36px] bg-white/80 border border-white/90 
+                  shadow-[0_10px_30px_rgba(139,92,246,0.08)] overflow-hidden">
         
         <!-- Soft top highlight for gloss -->
         <div class="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-white/55 to-transparent pointer-events-none rounded-t-[36px]"></div>
@@ -69,28 +68,28 @@
         <div class="relative z-10 px-8 sm:px-12 md:px-16 py-14 sm:py-16 md:py-20 text-center">
           
           <!-- Badge -->
-          <div class="inline-flex items-center gap-2.5 px-5 py-2.5 mb-9 rounded-full bg-white/70 backdrop-blur-xl border border-white/95 shadow-[0_4px_16px_rgba(139,92,246,0.08),inset_0_1px_0_rgba(255,255,255,1)] text-[13px] font-semibold text-violet-700 animate-fade-up" style="animation-delay:0.1s;">
+          <div class="inline-flex items-center gap-2.5 px-5 py-2.5 mb-9 rounded-full bg-white/80 border border-white/95 shadow-[0_4px_16px_rgba(139,92,246,0.06)] text-[13px] font-semibold text-violet-700">
             <i class="fas fa-sparkles text-amber-400 text-xs"></i>
             Trusted by 100+ Pageants Worldwide
           </div>
 
           <!-- Title -->
           <h1 class="text-[2.8rem] sm:text-5xl md:text-[4.2rem] font-black leading-[1.08] font-['Playfair_Display'] tracking-tight">
-            <span class="block bg-gradient-to-r from-violet-600 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-fade-up" style="animation-delay:0.2s;">
+            <span class="block bg-gradient-to-r from-violet-600 via-purple-500 to-pink-500 bg-clip-text text-transparent">
               Event Fair
             </span>
-            <span class="block text-[1.7rem] sm:text-3xl md:text-[2.5rem] text-gray-800 mt-4 font-bold tracking-tight animate-fade-up" style="animation-delay:0.3s;">
+            <span class="block text-[1.7rem] sm:text-3xl md:text-[2.5rem] text-gray-800 mt-4 font-bold tracking-tight">
               Judge Scoring Tabulation System
             </span>
           </h1>
 
           <!-- Subtitle -->
-          <p class="mt-7 text-[16px] sm:text-lg md:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto font-medium animate-fade-up" style="animation-delay:0.4s;">
+          <p class="mt-7 text-[16px] sm:text-lg md:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto font-medium">
             The most elegant, real-time, and transparent judging platform for beauty pageants, talent competitions, and more.
           </p>
 
           <!-- CTAs -->
-          <div class="mt-11 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style="animation-delay:0.5s;">
+          <div class="mt-11 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="#features" class="group inline-flex items-center gap-3 px-9 py-4 bg-gradient-to-r from-violet-500 via-purple-500 to-pink-500 text-white font-semibold text-[15px] rounded-2xl shadow-[0_8px_28px_rgba(236,72,153,0.32)] hover:shadow-[0_12px_36px_rgba(236,72,153,0.42)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300">
               <i class="fas fa-crown group-hover:rotate-12 transition duration-300"></i>
               Explore Features
@@ -103,15 +102,15 @@
 
           <!-- Stats -->
           <div class="mt-14 grid grid-cols-3 gap-3 sm:gap-5 max-w-md mx-auto">
-            <div class="p-4 sm:p-5 rounded-2xl bg-white/70 backdrop-blur-xl border border-white/95 shadow-[0_4px_16px_rgba(139,92,246,0.06),inset_0_1px_0_rgba(255,255,255,1)] hover:scale-105 transition-transform duration-300 animate-fade-up" style="animation-delay:0.55s;">
+            <div class="p-4 sm:p-5 rounded-2xl bg-white/80 border border-white/95 shadow-[0_4px_16px_rgba(139,92,246,0.06)] hover:scale-[1.01] transition-transform duration-200">
               <div class="text-xl sm:text-2xl md:text-[1.7rem] font-bold text-violet-600">500+</div>
               <p class="text-[10px] sm:text-[11px] text-gray-500 mt-1 font-medium">Pageants</p>
             </div>
-            <div class="p-4 sm:p-5 rounded-2xl bg-white/70 backdrop-blur-xl border border-white/95 shadow-[0_4px_16px_rgba(236,72,153,0.06),inset_0_1px_0_rgba(255,255,255,1)] hover:scale-105 transition-transform duration-300 animate-fade-up" style="animation-delay:0.65s;">
+            <div class="p-4 sm:p-5 rounded-2xl bg-white/80 border border-white/95 shadow-[0_4px_16px_rgba(236,72,153,0.06)] hover:scale-[1.01] transition-transform duration-200">
               <div class="text-xl sm:text-2xl md:text-[1.7rem] font-bold text-pink-500">50K+</div>
               <p class="text-[10px] sm:text-[11px] text-gray-500 mt-1 font-medium">Scores</p>
             </div>
-            <div class="p-4 sm:p-5 rounded-2xl bg-white/70 backdrop-blur-xl border border-white/95 shadow-[0_4px_16px_rgba(245,158,11,0.06),inset_0_1px_0_rgba(255,255,255,1)] hover:scale-105 transition-transform duration-300 animate-fade-up" style="animation-delay:0.75s;">
+            <div class="p-4 sm:p-5 rounded-2xl bg-white/80 border border-white/95 shadow-[0_4px_16px_rgba(245,158,11,0.06)] hover:scale-[1.01] transition-transform duration-200">
               <div class="text-xl sm:text-2xl md:text-[1.7rem] font-bold text-amber-500">100%</div>
               <p class="text-[10px] sm:text-[11px] text-gray-500 mt-1 font-medium">Fairness</p>
             </div>
