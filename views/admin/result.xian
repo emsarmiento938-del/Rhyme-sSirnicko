@@ -1,0 +1,30 @@
+{{> head}}
+<div class="container mx-auto p-4">
+  <h1 class="text-2xl font-bold mb-4">Results - {{round.name}}</h1>
+
+  <div class="mb-4">
+    <a href="/admin/result/print/{{round.id}}" id="printBtn" class="btn btn-primary">Print / Export PDF</a>
+  </div>
+
+  <!-- Clicking the Print link now navigates to the print page (`result_print.xian`) -->
+
+  <table class="table-auto w-full datatable">
+    <thead>
+      <tr>
+        <th class="px-4 py-2">Rank</th>
+        <th class="px-4 py-2">Participant</th>
+        <th class="px-4 py-2">Raw Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each scoreboard}}
+        <tr>
+          <td class="border px-4 py-2">{{#if this.hasScores}}{{rankLabel @index}}{{else}}-{{/if}}</td>
+          <td class="border px-4 py-2">{{this.participant.name}}</td>
+          <td class="border px-4 py-2">{{this.finalRaw}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+{{> footer}}

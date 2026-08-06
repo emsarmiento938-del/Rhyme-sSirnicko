@@ -1,0 +1,194 @@
+{{> head}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<body class="bg-gradient-to-br from-violet-50 via-purple-50 to-pink-50 min-h-screen font-sans">
+
+  <div class="flex">
+    {{> adminsidebar}}
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8">
+
+      <!-- Header -->
+      <div class="mb-10 bg-gradient-to-r from-violet-700 via-purple-700 to-pink-700 text-white rounded-2xl shadow-2xl p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="flex items-center gap-6">
+          <div class="w-20 h-20 bg-gradient-to-br from-pink-400 to-violet-500 rounded-full flex items-center justify-center shadow-2xl ring-4 ring-pink-300/50">
+            <i class="fas fa-trophy text-4xl text-white drop-shadow-lg"></i>
+          </div>
+          <div>
+            <h1 class="text-4xl font-extrabold tracking-tight">{{event.name}}</h1>
+            <p class="text-pink-200 text-lg mt-1 font-medium">Event Tabulation System • Full Event Overview</p>
+          </div>
+        </div>
+        <div class="text-right">
+          <p class="text-pink-200 text-sm">Welcome back,</p>
+          <p class="text-2xl font-bold">{{user.name}}</p>
+        </div>
+      </div>
+
+      <!-- Back + Action Buttons -->
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+        <a href="/admin/events" class="inline-flex items-center gap-3 text-violet-700 hover:text-violet-900 font-semibold text-lg hover:-translate-x-1 transition">
+          <i class="fas fa-arrow-left text-xl"></i> Back to Events
+        </a>
+        <div class="flex gap-4">
+          <a href="/admin/events/{{event.id}}/edit" class="inline-flex items-center gap-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold py-3 px-7 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition">
+            <i class="fas fa-edit"></i> Edit Event
+          </a>
+          <a href="/admin/events/{{event.id}}/rounds" class="inline-flex items-center gap-3 bg-gradient-to-r from-violet-600 to-pink-600 text-white font-bold py-3 px-7 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition">
+            <i class="fas fa-cogs"></i> Manage Rounds
+          </a>
+        </div>
+      </div>
+
+      <!-- Success Message -->
+      {{#if success_msg}}
+        <div class="bg-green-50 border-l-4 border-green-500 text-green-800 p-6 mb-8 rounded-r-xl shadow-lg flex items-center gap-4">
+          <i class="fas fa-check-circle text-3xl text-green-600"></i>
+          <p class="font-bold text-lg">{{success_msg}}</p>
+        </div>
+      {{/if}}
+
+      <!-- Event Details + Judges -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+
+        <!-- Event Details Card -->
+        <div class="bg-white rounded-2xl shadow-2xl border border-purple-100 p-8">
+          <h3 class="text-2xl font-bold text-purple-800 mb-6 flex items-center gap-3">
+            <i class="fas fa-info-circle text-pink-600"></i> Event Details
+          </h3>
+          <div class="space-y-5 text-gray-700">
+            <div class="flex items-center gap-4">
+              <i class="fas fa-calendar-alt text-violet-600 w-6"></i>
+              <div>
+                <p class="font-semibold text-purple-800">Date & Time</p>
+                <p class="text-lg">{{event.date}}</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <i class="fas fa-map-marker-alt text-pink-600 w-6"></i>
+              <div>
+                <p class="font-semibold text-purple-800">Venue</p>
+                <p class="text-lg">{{event.venue}}</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <i class="fas fa-circle-notch text-violet-600 w-6"></i>
+              <div>
+                <p class="font-semibold text-purple-800">Status</p>
+                <span class="inline-block px-4 py-2 rounded-full text-sm font-bold
+                  {{#if (eq event.status 'ongoing')}}bg-green-100 text-green-800 border border-green-300
+                  {{else if (eq event.status 'upcoming')}}bg-violet-100 text-violet-800 border border-violet-300
+                  {{else}}bg-gray-200 text-gray-700 border border-gray-400{{/if}}">
+                  {{event.status}}
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <i class="fas fa-globe text-pink-600 w-6"></i>
+              <div>
+                <p class="font-semibold text-purple-800">Public Access</p>
+                <p class="text-lg font-bold text-purple-800">{{#if event.isPublic}}Yes{{else}}No{{/if}}</p>
+              </div>
+            </div>
+            {{#if event.description}}
+            <div class="pt-4 border-t border-purple-100">
+              <p class="font-semibold text-purple-800 mb-2">Description</p>
+              <p class="text-gray-600 leading-relaxed">{{event.description}}</p>
+            </div>
+            {{/if}}
+          </div>
+        </div>
+
+        <!-- Judges Card -->
+        <div class="bg-white rounded-2xl shadow-2xl border border-purple-100 p-8">
+          <div class="flex justify-between items-center mb-6">
+            <h3 class="text-2xl font-bold text-purple-800 flex items-center gap-3">
+              <i class="fas fa-gavel text-pink-600"></i> Assigned Judges
+            </h3>
+            <span class="text-3xl font-bold text-violet-700">{{event.judges.length}}</span>
+          </div>
+          <div class="space-y-4">
+            {{#if event.judges.length}}
+              {{#each event.judges}}
+                <div class="flex items-center justify-between p-4 bg-purple-50 rounded-xl border border-purple-200 hover:bg-purple-100 transition">
+                  <p class="font-bold text-purple-800">{{name}}</p>
+                  <form method="POST" action="/admin/events/{{../event.id}}/judges/{{id}}/remove" class="inline">
+                    <button type="submit" class="text-red-600 hover:text-red-800 transition">
+                      <i class="fas fa-user-minus text-xl"></i>
+                    </button>
+                  </form>
+                </div>
+              {{/each}}
+            {{else}}
+              <div class="text-center py-12">
+                <i class="fas fa-users-slash text-6xl text-purple-300 mb-4"></i>
+                <p class="text-gray-600 font-medium">No judges assigned yet</p>
+              </div>
+            {{/if}}
+            <a href="/admin/judges" class="block text-center mt-6 bg-gradient-to-r from-violet-600 to-pink-600 text-white font-bold py-3.5 rounded-xl hover:shadow-xl transform hover:scale-105 transition">
+              <i class="fas fa-plus mr-2"></i> Assign Judges
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rounds Section -->
+      <div class="bg-white rounded-2xl shadow-2xl border border-purple-100 overflow-hidden">
+        <div class="bg-gradient-to-r from-violet-700 to-pink-700 text-white p-6 flex justify-between items-center">
+          <h3 class="text-2xl font-bold flex items-center gap-3">
+            <i class="fas fa-layer-group"></i> Competition Rounds
+          </h3>
+          <a href="/admin/events/{{event.id}}/rounds/create" class="bg-white text-violet-700 font-bold py-3 px-7 rounded-xl hover:bg-gray-100 transform hover:scale-105 transition flex items-center gap-2">
+            <i class="fas fa-plus"></i> Add Round
+          </a>
+        </div>
+
+        {{#if event.rounds.length}}
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {{#each event.rounds}}
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border border-purple-200 p-6 hover:shadow-xl transform hover:scale-105 transition-all">
+                  <div class="flex justify-between items-start mb-4">
+                    <h4 class="text-xl font-bold text-purple-800">{{name}}</h4>
+                    <span class="text-3xl font-bold text-violet-600">#{{order}}</span>
+                  </div>
+                  <div class="space-y-3 text-sm">
+                    <p class="flex items-center gap-2">
+                      <i class="fas fa-users text-pink-600"></i>
+                      <span class="font-medium">{{participants.length}} Participants</span>
+                    </p>
+                    <p class="flex items-center gap-2">
+                      <i class="fas fa-circle text-xs {{#if (eq status 'open')}}text-green-500{{else}}text-red-500{{/if}}"></i>
+                      <span class="font-medium capitalize">{{status}}</span>
+                    </p>
+                  </div>
+                  <div class="flex gap-3 mt-6">
+                    <a href="/admin/rounds/{{id}}/criteria" class="flex-1 text-center bg-violet-600 text-white py-2.5 rounded-lg hover:bg-violet-700 transition text-sm font-medium">
+                      <i class="fas fa-list-ul mr-1"></i> Criteria
+                    </a>
+                    <a href="/admin/rounds/{{id}}/participants" class="flex-1 text-center bg-emerald-600 text-white py-2.5 rounded-lg hover:bg-emerald-700 transition text-sm font-medium">
+                      <i class="fas fa-user-friends mr-1"></i> Participants
+                    </a>
+                    <a href="/admin/rounds/{{id}}/scoreboard" class="flex-1 text-center bg-pink-600 text-white py-2.5 rounded-lg hover:bg-pink-700 transition text-sm font-medium">
+                      <i class="fas fa-trophy mr-1"></i> Scoreboard
+                    </a>
+                  </div>
+                </div>
+              {{/each}}
+            </div>
+          </div>
+        {{else}}
+          <div class="text-center py-20">
+            <i class="fas fa-layer-group text-8xl text-purple-200 mb-6"></i>
+            <p class="text-xl font-bold text-gray-600">No rounds created yet</p>
+            <p class="text-gray-500 mt-2">Click "Add Round" to start building your competition structure</p>
+          </div>
+        {{/if}}
+      </div>
+
+    </main>
+  </div>
+
+{{> footer}}
+</body>

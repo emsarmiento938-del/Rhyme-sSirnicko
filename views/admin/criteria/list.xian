@@ -1,0 +1,122 @@
+{{> head}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<body class="bg-gradient-to-br from-violet-50 via-purple-50 to-pink-50 min-h-screen font-sans">
+
+  <div class="flex">
+    {{> adminsidebar}}
+
+    <!-- Main Content -->
+    <main class="flex-1 min-h-screen"> -->
+    <main class="flex-1 p-8">
+
+      <!-- Header -->
+      <div class="mb-10 bg-gradient-to-r from-violet-700 via-purple-700 to-pink-700 text-white rounded-2xl shadow-2xl p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="flex items-center gap-6">
+          <div class="w-20 h-20 bg-gradient-to-br from-pink-400 to-violet-500 rounded-full flex items-center justify-center shadow-2xl ring-4 ring-pink-300/50">
+            <i class="fas fa-list-ol text-4xl text-white drop-shadow-lg"></i>
+          </div>
+          <div>
+            <h1 class="text-4xl font-extrabold tracking-tight">Judging Criteria</h1>
+            <p class="text-pink-200 text-lg mt-1 font-medium">Round: <span class="font-bold">{{round.name}}</span></p>
+          </div>
+        </div>
+        <div class="text-right">
+          <p class="text-pink-200 text-sm">Welcome back,</p>
+          <p class="text-2xl font-bold">{{user.name}}</p>
+        </div>
+      </div>
+
+      <!-- Breadcrumb + Actions -->
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+        <a href="/admin/events/{{round.event.id}}/rounds" class="inline-flex items-center gap-3 text-violet-700 hover:text-violet-900 font-semibold text-lg hover:-translate-x-1 transition">
+          <i class="fas fa-arrow-left text-xl"></i> Back to Rounds
+        </a>
+
+        <a href="/admin/rounds/{{round.id}}/criteria/create" 
+           class="inline-flex items-center gap-3 bg-gradient-to-r from-violet-600 to-pink-600 text-white font-bold py-3.5 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition">
+          <i class="fas fa-plus"></i> Create New Criteria
+        </a>
+      </div>
+
+      <!-- Flash Messages -->
+      {{#if success_msg}}
+        <div class="bg-green-50 border-l-4 border-green-500 text-green-800 p-6 mb-8 rounded-r-xl shadow-lg flex items-center gap-4">
+          <i class="fas fa-check-circle text-3xl text-green-600"></i>
+          <p class="font-bold text-lg">{{success_msg}}</p>
+        </div>
+      {{/if}}
+      {{#if error_msg}}
+        <div class="bg-red-50 border-l-4 border-red-600 text-red-800 p-6 mb-8 rounded-r-xl shadow-lg flex items-center gap-4">
+          <i class="fas fa-exclamation-triangle text-3xl text-red-600"></i>
+          <p class="font-bold text-lg">{{error_msg}}</p>
+        </div>
+      {{/if}}
+
+      <!-- Criteria Cards Grid (SK Dashboard Style) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        {{#each criteria}}
+          <div class="bg-white rounded-2xl shadow-xl border border-purple-100 overflow-hidden hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-violet-600 to-pink-600 text-white p-6">
+              <h3 class="text-xl font-bold flex items-center justify-between">
+                {{name}}
+                <span class="text-3xl font-extrabold opacity-90">{{weight}}%</span>
+              </h3>
+            </div>
+
+            <!-- Body -->
+            <div class="p-6 space-y-5">
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-medium text-gray-600">Max Score</span>
+                <span class="text-2xl font-bold text-purple-800">{{maxScore}}</span>
+              </div>
+
+              <!-- Description -->
+              <div>
+                <p class="text-sm font-medium text-gray-600 mb-2">Description</p>
+                <p class="text-gray-700 leading-relaxed">{{description}}</p>
+              </div>
+
+              <!-- Delete Button -->
+              <form method="POST" action="/admin/criteria/{{id}}/delete" class="mt-6" onsubmit="return confirm('Delete this criteria permanently?')">
+                <button type="submit" class="w-full bg-red-100 text-red-700 hover:bg-red-200 font-bold py-3 rounded-lg transition flex items-center justify-center gap-2">
+                  <i class="fas fa-trash-alt"></i> Delete Criteria
+                </button>
+              </form>
+            </div>
+          </div>
+        {{else}}
+          <!-- Empty State -->
+          <div class="col-span-full text-center py-20 bg-white rounded-2xl shadow-xl border border-purple-100">
+            <i class="fas fa-list-ol text-9xl text-purple-200 mb-6"></i>
+            <h3 class="text-2xl font-bold text-gray-700 mb-3">No Criteria Defined Yet</h3>
+            <p class="text-gray-500 text-lg mb-8">Start building your judging system by adding the first criteria.</p>
+            <a href="/admin/rounds/{{round.id}}/criteria/create" 
+               class="inline-flex items-center gap-3 bg-gradient-to-r from-violet-600 to-pink-600 text-white font-bold py-4 px-10 rounded-xl hover:shadow-xl transform hover:scale-105 transition">
+              <i class="fas fa-plus"></i> Create First Criteria
+            </a>
+          </div>
+        {{/each}}
+      </div>
+
+      <!-- Total Weight Indicator (if there are criteria) -->
+      {{#if criteria.length}}
+      <div class="mt-12 bg-white rounded-2xl shadow-xl border border-purple-100 p-8 text-center">
+        <p class="text-lg font-medium text-gray-600">Total Weight</p>
+        <p class="text-5xl font-extrabold bg-gradient-to-r from-violet-600 to-pink-600 bg-clip-text text-transparent mt-2">
+          {{sum (reduce criteria 'weight' 0) }}%
+        </p>
+        {{#unless (eq (reduce criteria 'weight' 0) 100)}}
+          <p class="text-amber-600 font-medium mt-4">Warning: Total weight should be 100%</p>
+        {{else}}
+          <p class="text-emerald-600 font-medium mt-4">Perfect! Total weight is exactly 100%</p>
+        {{/unless}}
+      </div>
+      {{/if}}
+
+    </main>
+  </div>
+
+{{> footer}}
+</body>

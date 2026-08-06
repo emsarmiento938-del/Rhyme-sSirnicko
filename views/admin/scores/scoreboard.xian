@@ -1,0 +1,161 @@
+{{> head}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<body class="bg-gradient-to-br from-violet-50 via-purple-50 to-pink-50 min-h-screen font-sans">
+
+  <div class="flex">
+    {{> adminsidebar}}
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8">
+
+      <!-- Header -->
+      <div class="mb-10 bg-gradient-to-r from-violet-700 via-purple-700 to-pink-700 text-white rounded-2xl shadow-2xl p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="flex items-center gap-6">
+          <div class="w-20 h-20 bg-gradient-to-br from-pink-400 to-violet-500 rounded-full flex items-center justify-center shadow-2xl ring-4 ring-pink-300/50">
+            <i class="fas fa-trophy text-4xl text-white drop-shadow-lg"></i>
+          </div>
+          <div>
+            <h1 class="text-4xl font-extrabold tracking-tight">Live Scoreboard</h1>
+            <p class="text-pink-200 text-lg mt-1 font-medium">Round: <span class="font-bold">{{round.name}}</span></p>
+          </div>
+        </div>
+        <div class="text-right">
+          <p class="text-pink-200 text-sm">Welcome back,</p>
+          <p class="text-2xl font-bold">{{user.name}}</p>
+        </div>
+      </div>
+
+      <!-- Back Button -->
+      <div class="mb-6">
+        <a href="/admin/events/{{round.event.id}}/rounds" 
+           class="inline-flex items-center gap-3 text-violet-700 hover:text-violet-900 font-semibold text-lg hover:-translate-x-1 transition">
+          <i class="fas fa-arrow-left text-xl"></i> Back to Rounds
+        </a>
+      </div>
+
+      <!-- Scoreboard Cards – SK Dashboard Style -->
+      <div class="space-y-8">
+        {{#each scoreboard}}
+        <div class="bg-white rounded-2xl shadow-xl border border-purple-100 overflow-hidden hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300">
+          <div class="bg-gradient-to-r from-violet-600 to-pink-600 text-white p-6 flex items-center justify-between">
+            <!-- Rank Badge -->
+            <div class="flex items-center gap-4">
+              <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-black shadow-2xl
+                          {{#if (eq (add @index 1) 1)}} bg-gradient-to-br from-yellow-400 to-amber-500 text-gray-900 ring-4 ring-yellow-300
+                          {{else if (eq (add @index 1) 2)}} bg-gradient-to-br from-gray-300 to-gray-500 text-gray-900 ring-4 ring-gray-400
+                          {{else if (eq (add @index 1) 3)}} bg-gradient-to-br from-orange-400 to-red-500 ring-4 ring-orange-300
+                          {{else}} bg-white/20 text-white ring-4 ring-white/30 {{/if}}">
+                {{add @index 1}}
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold">{{participant.name}}</h3>
+                <p class="text-pink-100 opacity-90">{{participant.barangay}}</p>
+              </div>
+            </div>
+
+            <!-- Final Score (points + percent) -->
+            <div class="text-right">
+              <p class="text-sm opacity-80">Total Points</p>
+              <p class="text-5xl font-extrabold">{{finalRaw}}</p>
+              <p class="text-xs opacity-70">({{finalScorePercent}}%)</p>
+            </div>
+          </div>
+
+          <!-- Criteria Breakdown -->
+          <div class="p-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-{{round.criteria.length}} gap-6">
+            {{#each ../round.criteria}}
+            <div class="text-center">
+              <p class="font-medium text-gray-600 text-sm">{{name}}</p>
+              <p class="text-xs text-purple-600 mb-2">Weight: {{weight}}%</p>
+              <div class="space-y-2">
+                {{#if (lookup ../scoresByCriteria id)}}
+                  {{#each (lookup ../scoresByCriteria id)}}
+                    <div class="inline-block px-4 py-2 bg-gradient-to-r from-violet-100 to-pink-100 text-purple-800 font-bold rounded-full text-sm">
+                      {{score}}
+                    </div>
+                  {{/each}}
+                {{else}}
+                  <span class="text-gray-400 text-2xl">—</span>
+                {{/if}}
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+        {{else}}
+        <!-- Empty State -->
+        <div class="text-center py-20 bg-white rounded-2xl shadow-xl border border-purple-100">
+          <i class="fas fa-trophy text-9xl text-purple-200 mb-6"></i>
+          <h3 class="text-3xl font-bold text-gray-700 mb-3">No Scores Yet</h3>
+          <p class="text-gray-500 text-lg">Judges haven't submitted scores for this round.</p>
+          <p class="text-gray-500 mt-2">Results will appear here in real-time once judging begins!</p>
+        </div>
+        {{/each}}
+      </div>
+
+      <!-- Podium Summary (Top 3) – Only if there are scores -->
+      {{#if scoreboard.length}}
+      <div class="mt-16">
+        <h2 class="text-3xl font-bold text-center text-purple-800 mb-10">Top 3 Winners</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- 2nd Place -->
+          {{#if (gte scoreboard.length 2)}}
+          <div class="order-1 md:order-2">
+            <div class="bg-gradient-to-b from-gray-200 to-gray-400 text-white rounded-t-3xl pt-10 pb-20 relative overflow-hidden shadow-2xl">
+              <div class="absolute top-0 left-0 right-0 text-center">
+                <i class="fas fa-medal text-6xl text-gray-600"></i>
+              </div>
+              <div class="text-center mt-8">
+                <h3 class="text-2xl font-bold">{{get (index scoreboard 1) "participant.name"}}</h3>
+                <p class="text-lg opacity-90">{{get (index scoreboard 1) "participant.barangay"}}</p>
+                <p class="text-5xl font-black mt-4">{{get (index scoreboard 1) "finalRaw"}}</p>
+                <p class="text-sm opacity-80">({{get (index scoreboard 1) "finalScorePercent"}}%)</p>
+              </div>
+            </div>
+            <div class="bg-gray-600 text-white text-center py-4 font-bold text-xl">2nd Place</div>
+          </div>
+          {{/if}}
+
+          <!-- 1st Place (Center & Bigger) -->
+          <div class="order-2 md:order-1 md:scale-110">
+            <div class="bg-gradient-to-b from-yellow-400 to-amber-600 text-white rounded-t-3xl pt-12 pb-24 relative overflow-hidden shadow-2xl">
+              <div class="absolute top-0 left-0 right-0 text-center">
+                <i class="fas fa-crown text-7xl text-yellow-300"></i>
+              </div>
+              <div class="text-center mt-10">
+                <h3 class="text-3xl font-black">{{get (index scoreboard 0) "participant.name"}}</h3>
+                <p class="text-xl opacity-90">{{get (index scoreboard 0) "participant.barangay"}}</p>
+                <p class="text-6xl font-black mt-4">{{get (index scoreboard 0) "finalRaw"}}</p>
+                <p class="text-sm opacity-80">({{get (index scoreboard 0) "finalScorePercent"}}%)</p>
+              </div>
+            </div>
+            <div class="bg-amber-700 text-white text-center py-5 font-bold text-2xl">Champion</div>
+          </div>
+
+          <!-- 3rd Place -->
+          {{#if (gte scoreboard.length 3)}}
+          <div class="order-3">
+            <div class="bg-gradient-to-b from-orange-400 to-red-600 text-white rounded-t-3xl pt-8 pb-16 relative overflow-hidden shadow-2xl">
+              <div class="absolute top-0 left-0 right-0 text-center">
+                <i class="fas fa-medal text-5xl text-orange-700"></i>
+              </div>
+              <div class="text-center mt-6">
+                <h3 class="text-xl font-bold">{{get (index scoreboard 2) "participant.name"}}</h3>
+                <p class="text-lg opacity-90">{{get (index scoreboard 2) "participant.barangay"}}</p>
+                <p class="text-4xl font-black mt-4">{{get (index scoreboard 2) "finalRaw"}}</p>
+                <p class="text-sm opacity-80">({{get (index scoreboard 2) "finalScorePercent"}}%)</p>
+              </div>
+            </div>
+            <div class="bg-red-700 text-white text-center py-4 font-bold text-xl">3rd Place</div>
+          </div>
+          {{/if}}
+        </div>
+      </div>
+      {{/if}}
+
+    </main>
+  </div>
+
+{{> footer}}
+</body>

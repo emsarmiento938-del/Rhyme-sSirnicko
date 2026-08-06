@@ -1,0 +1,289 @@
+{{> head}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<body class="bg-[#f8f6fc] text-slate-800 min-h-screen font-sans selection:bg-pink-500 selection:text-white antialiased">
+
+  <!-- iOS-style Light Ambient Background Glows -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="absolute -top-[15%] -left-[10%] w-[55vw] h-[55vw] bg-violet-300/30 blur-[130px] rounded-full"></div>
+    <div class="absolute top-[25%] -right-[10%] w-[50vw] h-[50vw] bg-pink-300/30 blur-[130px] rounded-full"></div>
+    <div class="absolute -bottom-[15%] left-[20%] w-[60vw] h-[60vw] bg-purple-200/40 blur-[150px] rounded-full"></div>
+  </div>
+
+  <div class="relative z-10 flex min-h-screen">
+    {{> adminsidebar}} <!-- Your sidebar -->
+
+    <!-- Main Content Area -->
+    <main class="flex-1 p-4 sm:p-6 lg:p-10 max-w-7xl mx-auto w-full">
+
+      <!-- Header: Modern Light iOS Glass Card with Dynamic Accent -->
+      <div class="mb-8 relative overflow-hidden rounded-[2.5rem] bg-gradient-to-r from-violet-600/90 via-purple-600/90 to-pink-600/90 backdrop-blur-2xl p-6 sm:p-8 shadow-[0_20px_50px_rgba(124,58,237,0.15)] text-white">
+        
+        <!-- Subtle iOS Dynamic Top Pill -->
+        <div class="w-28 h-1.5 bg-white/30 rounded-full mx-auto mb-6 hidden sm:block"></div>
+
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div class="flex items-center space-x-5">
+            <!-- Icon Avatar with iOS Glowing Ring -->
+            <div class="relative group">
+              <div class="absolute -inset-0.5 bg-gradient-to-r from-pink-300 to-violet-300 rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-500"></div>
+              <div class="relative w-16 h-16 sm:w-20 sm:h-20 bg-white/20 backdrop-blur-xl rounded-[1.5rem] flex items-center justify-center border border-white/30 shadow-inner">
+                <span class="text-white font-black text-2xl sm:text-3xl tracking-tight drop-shadow-md">ET</span>
+              </div>
+            </div>
+
+            <div>
+              <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white drop-shadow-sm">
+                Event Tabulation
+              </h1>
+              <p class="text-pink-100/90 text-sm sm:text-base font-medium mt-0.5 flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-300 animate-pulse"></span>
+                Admin Dashboard • Real-time Scoring
+              </p>
+            </div>
+          </div>
+
+          <!-- iOS Profile Greeting Chip -->
+          <div class="w-full sm:w-auto bg-white/15 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-3 flex sm:block justify-between items-center shadow-sm">
+            <p class="text-pink-100 text-xs font-semibold uppercase tracking-wider">Welcome back</p>
+            <p class="text-lg sm:text-xl font-bold text-white tracking-tight">{{user.name}}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flash Messages (iOS Alert Style) -->
+      {{#if success_msg}}
+        <div class="mb-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 backdrop-blur-xl p-4 text-emerald-900 shadow-sm flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0">
+            <i class="fas fa-check text-lg text-emerald-600"></i>
+          </div>
+          <p class="font-semibold text-sm sm:text-base">{{success_msg}}</p>
+        </div>
+      {{/if}}
+      
+      {{#if error_msg}}
+        <div class="mb-6 rounded-2xl bg-rose-500/10 border border-rose-500/20 backdrop-blur-xl p-4 text-rose-900 shadow-sm flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-rose-500/20 flex items-center justify-center shrink-0">
+            <i class="fas fa-exclamation text-lg text-rose-600"></i>
+          </div>
+          <p class="font-semibold text-sm sm:text-base">{{error_msg}}</p>
+        </div>
+      {{/if}}
+
+      <!-- Stats Cards – Glassmorphic iOS Light Widgets -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+
+        <!-- Card 1 -->
+        <div class="group relative rounded-[2rem] bg-white/70 backdrop-blur-2xl border border-white/80 p-6 shadow-[0_10px_30px_rgba(139,92,246,0.06)] hover:shadow-[0_15px_35px_rgba(139,92,246,0.15)] hover:-translate-y-0.5 transition-all duration-300">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-violet-600 text-xs font-bold uppercase tracking-wider">Total Events</p>
+              <p class="text-4xl sm:text-5xl font-black text-slate-900 mt-2 tracking-tight counter-value" data-target="{{totalEvents}}">0</p>
+              <p class="text-slate-500 text-xs mt-2 font-medium">All competitions</p>
+            </div>
+            <div class="w-12 h-12 rounded-2xl bg-violet-100 border border-violet-200/60 flex items-center justify-center text-violet-600 group-hover:scale-110 transition-transform">
+              <i class="fas fa-trophy text-xl"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="group relative rounded-[2rem] bg-white/70 backdrop-blur-2xl border border-white/80 p-6 shadow-[0_10px_30px_rgba(236,72,153,0.06)] hover:shadow-[0_15px_35px_rgba(236,72,153,0.15)] hover:-translate-y-0.5 transition-all duration-300">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-pink-600 text-xs font-bold uppercase tracking-wider">Total Participants</p>
+              <p class="text-4xl sm:text-5xl font-black text-slate-900 mt-2 tracking-tight counter-value" data-target="{{totalParticipants}}">0</p>
+              <p class="text-slate-500 text-xs mt-2 font-medium">Registered contenders</p>
+            </div>
+            <div class="w-12 h-12 rounded-2xl bg-pink-100 border border-pink-200/60 flex items-center justify-center text-pink-600 group-hover:scale-110 transition-transform">
+              <i class="fas fa-users text-xl"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="group relative rounded-[2rem] bg-white/70 backdrop-blur-2xl border border-white/80 p-6 shadow-[0_10px_30px_rgba(168,85,247,0.06)] hover:shadow-[0_15px_35px_rgba(168,85,247,0.15)] hover:-translate-y-0.5 transition-all duration-300">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-purple-600 text-xs font-bold uppercase tracking-wider">Total Judges</p>
+              <p class="text-4xl sm:text-5xl font-black text-slate-900 mt-2 tracking-tight counter-value" data-target="{{totalJudges}}">0</p>
+              <p class="text-slate-500 text-xs mt-2 font-medium">Active panel</p>
+            </div>
+            <div class="w-12 h-12 rounded-2xl bg-purple-100 border border-purple-200/60 flex items-center justify-center text-purple-600 group-hover:scale-110 transition-transform">
+              <i class="fas fa-gavel text-xl"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="group relative rounded-[2rem] bg-white/70 backdrop-blur-2xl border border-white/80 p-6 shadow-[0_10px_30px_rgba(217,70,239,0.06)] hover:shadow-[0_15px_35px_rgba(217,70,239,0.15)] hover:-translate-y-0.5 transition-all duration-300">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-fuchsia-600 text-xs font-bold uppercase tracking-wider">Total Criteria</p>
+              <p class="text-4xl sm:text-5xl font-black text-slate-900 mt-2 tracking-tight counter-value" data-target="{{totalCriteria}}">0</p>
+              <p class="text-slate-500 text-xs mt-2 font-medium">Scoring categories</p>
+            </div>
+            <div class="w-12 h-12 rounded-2xl bg-fuchsia-100 border border-fuchsia-200/60 flex items-center justify-center text-fuchsia-600 group-hover:scale-110 transition-transform">
+              <i class="fas fa-clipboard-list text-xl"></i>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Main Grid Sections -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Activity Overview Widget -->
+        <div class="rounded-[2.5rem] bg-white/80 backdrop-blur-3xl border border-white p-7 shadow-[0_15px_35px_rgba(0,0,0,0.03)] flex flex-col justify-between">
+          <div>
+            <h3 class="text-xl font-extrabold text-slate-900 mb-6 flex items-center gap-3 tracking-wide">
+              <span class="w-8 h-8 rounded-xl bg-pink-100 border border-pink-200 flex items-center justify-center text-pink-600 text-sm">
+                <i class="fas fa-chart-line"></i>
+              </span>
+              Activity Overview
+            </h3>
+
+            <div class="space-y-4">
+              <!-- Ongoing events tile -->
+              <div class="flex justify-between items-center p-5 rounded-2xl bg-gradient-to-r from-emerald-50 to-teal-50/50 border border-emerald-200/60">
+                <div>
+                  <p class="text-emerald-900 font-bold text-sm">Ongoing Events</p>
+                  <p class="text-xs text-emerald-600/80 mt-0.5 font-medium">Currently active</p>
+                </div>
+                <p class="text-3xl font-black text-emerald-600 tracking-tight">{{ongoingEvents}}</p>
+              </div>
+
+              <!-- Upcoming events tile -->
+              <div class="flex justify-between items-center p-5 rounded-2xl bg-gradient-to-r from-violet-50 to-purple-50/50 border border-violet-200/60">
+                <div>
+                  <p class="text-violet-900 font-bold text-sm">Upcoming Events</p>
+                  <p class="text-xs text-violet-600/80 mt-0.5 font-medium">Scheduled next</p>
+                </div>
+                <p class="text-3xl font-black text-violet-600 tracking-tight">{{upcomingEvents}}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 p-4 rounded-2xl bg-purple-50/50 border border-purple-100 text-xs text-purple-700/80 text-center font-medium">
+            Updated dynamically with real-time scoring data
+          </div>
+        </div>
+
+        <!-- Recent Events Card -->
+        <div class="lg:col-span-2 rounded-[2.5rem] bg-white/80 backdrop-blur-3xl border border-white shadow-[0_15px_35px_rgba(0,0,0,0.03)] overflow-hidden flex flex-col">
+          
+          <!-- Card Header -->
+          <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+            <h3 class="text-xl font-extrabold text-slate-900 flex items-center gap-3 tracking-wide">
+              <span class="w-8 h-8 rounded-xl bg-violet-100 border border-violet-200 flex items-center justify-center text-violet-600 text-sm">
+                <i class="fas fa-calendar-alt"></i>
+              </span>
+              Recent Events
+            </h3>
+            <span class="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-600 border border-slate-200">Live Status</span>
+          </div>
+
+          <!-- Table Container -->
+          <div class="p-4 sm:p-6 overflow-x-auto max-h-[26rem] overflow-y-auto custom-scrollbar">
+            <table class="w-full text-left border-separate border-spacing-y-2 text-sm">
+              <thead>
+                <tr class="text-xs font-bold text-slate-400 uppercase tracking-wider px-4">
+                  <th class="py-3 px-4">Event Name</th>
+                  <th class="py-3 px-4">Date</th>
+                  <th class="py-3 px-4">Venue</th>
+                  <th class="py-3 px-4">Status</th>
+                  <th class="py-3 px-4 text-center">Rounds</th>
+                  <th class="py-3 px-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-transparent">
+                {{#each recentEvents}}
+                <tr class="group bg-slate-50/70 hover:bg-violet-50/50 transition-all rounded-2xl">
+                  <td class="py-4 px-4 font-bold text-slate-800 rounded-l-2xl group-hover:text-violet-700 transition-colors">
+                    {{name}}
+                  </td>
+                  <td class="py-4 px-4 text-slate-600 font-medium">{{date}}</td>
+                  <td class="py-4 px-4 text-slate-500">{{venue}}</td>
+                  <td class="py-4 px-4">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider
+                      {{#if (eq status 'ongoing')}}bg-emerald-100 text-emerald-800 border border-emerald-300/60
+                      {{else if (eq status 'upcoming')}}bg-violet-100 text-violet-800 border border-violet-300/60
+                      {{else}}bg-slate-200 text-slate-700 border border-slate-300/60{{/if}}">
+                      <span class="w-1.5 h-1.5 rounded-full 
+                        {{#if (eq status 'ongoing')}}bg-emerald-500 animate-ping
+                        {{else if (eq status 'upcoming')}}bg-violet-500
+                        {{else}}bg-slate-500{{/if}}"></span>
+                      {{status}}
+                    </span>
+                  </td>
+                  <td class="py-4 px-4 text-center text-slate-700 font-extrabold">{{rounds.length}}</td>
+                  <td class="py-4 px-4 text-right rounded-r-2xl">
+                    <a href="/admin/events/{{id}}" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-violet-600 to-pink-600 hover:from-violet-700 hover:to-pink-700 text-white font-bold text-xs shadow-md shadow-pink-500/10 active:scale-95 transition-all">
+                      <span>Details</span>
+                      <i class="fas fa-chevron-right text-[10px]"></i>
+                    </a>
+                  </td>
+                </tr>
+                {{else}}
+                <tr>
+                  <td colspan="6" class="text-center py-12 text-slate-400 italic font-medium">
+                    <div class="flex flex-col items-center gap-2">
+                      <i class="fas fa-folder-open text-3xl text-slate-300"></i>
+                      <span>No recent events recorded.</span>
+                    </div>
+                  </td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Counter Animation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.counter-value').forEach(el => {
+        const target = parseInt(el.getAttribute('data-target'), 10) || 0;
+        let start = 0;
+        const duration = 1800;
+        const increment = target / (duration / 16);
+
+        const timer = setInterval(() => {
+          start += increment;
+          if (start >= target) {
+            el.textContent = target.toLocaleString();
+            clearInterval(timer);
+          } else {
+            el.textContent = Math.floor(start).toLocaleString();
+          }
+        }, 16);
+      });
+    });
+  </script>
+
+  <!-- Custom Scrollbar Styling for Light Theme -->
+  <style>
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.02);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(139, 92, 246, 0.2);
+      border-radius: 10px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(139, 92, 246, 0.4);
+    }
+  </style>
+
+{{> footer}}
+</body>

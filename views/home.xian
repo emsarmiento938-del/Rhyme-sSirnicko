@@ -1,0 +1,476 @@
+
+{{> header}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
+<body class="bg-[#f4f2f9] text-gray-800 antialiased min-h-screen overflow-x-hidden">
+
+  <!-- Ultra Glossy iPhone 2026 Glass Background -->
+  <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div class="absolute -top-48 -left-48 w-[560px] h-[560px] bg-violet-300/35 rounded-full blur-[140px] animate-blob-1"></div>
+    <div class="absolute top-1/4 -right-40 w-[480px] h-[480px] bg-pink-300/30 rounded-full blur-[120px] animate-blob-2"></div>
+    <div class="absolute -bottom-48 left-1/4 w-[520px] h-[520px] bg-indigo-200/35 rounded-full blur-[130px] animate-blob-3"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-purple-200/25 rounded-full blur-[160px] animate-pulse-slow"></div>
+
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.035)_1px,transparent_1px)] bg-[size:72px_72px]"></div>
+
+    <div class="absolute top-[16%] left-[15%] w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_8px_2px_rgba(255,255,255,0.8)] animate-twinkle"></div>
+    <div class="absolute top-[32%] right-[18%] w-1 h-1 bg-pink-200 rounded-full shadow-[0_0_6px_1px_rgba(251,207,232,0.9)] animate-twinkle" style="animation-delay:1.4s;"></div>
+    <div class="absolute bottom-[26%] left-[25%] w-1.5 h-1.5 bg-violet-200 rounded-full shadow-[0_0_8px_2px_rgba(196,181,253,0.8)] animate-twinkle" style="animation-delay:2.8s;"></div>
+  </div>
+
+  <!-- NAVBAR – Glossy Floating Glass -->
+  <header class="fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-5 py-4">
+      <div class="flex items-center justify-between rounded-[22px] bg-white/55 backdrop-blur-[28px] border border-white/90 shadow-[0_8px_40px_rgba(139,92,246,0.07),inset_0_1px_0_rgba(255,255,255,0.9)] px-6 py-3.5 animate-fade-down">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-gradient-to-br from-violet-500 via-purple-500 to-pink-500 rounded-[14px] flex items-center justify-center shadow-[0_4px_16px_rgba(139,92,246,0.35)]">
+            <i class="fas fa-crown text-lg text-yellow-100"></i>
+          </div>
+          <div>
+            <h1 class="text-[19px] font-bold font-['Playfair_Display'] bg-gradient-to-r from-violet-600 to-pink-500 bg-clip-text text-transparent tracking-tight">EventFair</h1>
+            <p class="text-[10px] text-violet-500/60 font-semibold tracking-[0.12em] uppercase">Judge Scoring</p>
+          </div>
+        </div>
+        <nav class="hidden lg:flex items-center gap-9">
+          <a href="#home" class="text-[13.5px] text-gray-600 hover:text-violet-600 transition font-medium">Home</a>
+          <a href="#features" class="text-[13.5px] text-gray-600 hover:text-violet-600 transition font-medium">Features</a>
+          <a href="#how" class="text-[13.5px] text-gray-600 hover:text-violet-600 transition font-medium">How It Works</a>
+          <a href="#faq" class="text-[13.5px] text-gray-600 hover:text-violet-600 transition font-medium">FAQ</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <button id="openLoginTop" type="button" class="px-5 py-2 text-[13px] text-violet-700 font-semibold border border-violet-200/70 rounded-xl hover:bg-white/80 transition shadow-sm">Login</button>
+          <button id="openRegisterTop" type="button" onclick="document.getElementById('register-modal').classList.remove('hidden'); document.getElementById('register-modal').classList.add('flex'); document.body.style.overflow='hidden'; (document.querySelector('header')||{}).style.pointerEvents='none';" class="px-5 py-2 text-[13px] bg-gradient-to-r from-violet-500 to-pink-500 text-white font-semibold rounded-xl shadow-[0_4px_18px_rgba(236,72,153,0.3)] hover:shadow-[0_6px_24px_rgba(236,72,153,0.4)] transition">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION – Professional Modern with Animations -->
+  <section id="home" class="min-h-screen flex items-center justify-center pt-28 pb-20 px-5">
+    <div class="w-full max-w-4xl mx-auto">
+      
+      <!-- Glossy Glass Container Box with subtle float -->
+      <div class="relative rounded-[36px] bg-white/55 backdrop-blur-[32px] border border-white/90 
+                  shadow-[0_20px_60px_rgba(139,92,246,0.10),0_8px_24px_rgba(236,72,153,0.06),inset_0_1px_0_rgba(255,255,255,1),inset_0_-1px_0_rgba(255,255,255,0.4)]
+                  overflow-hidden animate-hero-float">
+        
+        <!-- Soft top highlight for gloss -->
+        <div class="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-white/55 to-transparent pointer-events-none rounded-t-[36px]"></div>
+        
+        <!-- Soft bottom glow -->
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-36 bg-gradient-to-t from-violet-200/25 to-transparent pointer-events-none blur-2xl"></div>
+
+        <!-- Subtle shine sweep -->
+        <div class="absolute inset-0 overflow-hidden rounded-[36px] pointer-events-none">
+          <div class="absolute -inset-full bg-gradient-to-r from-transparent via-white/25 to-transparent skew-x-12 animate-shine"></div>
+        </div>
+
+        <div class="relative z-10 px-8 sm:px-12 md:px-16 py-14 sm:py-16 md:py-20 text-center">
+          
+          <!-- Badge -->
+          <div class="inline-flex items-center gap-2.5 px-5 py-2.5 mb-9 rounded-full bg-white/70 backdrop-blur-xl border border-white/95 shadow-[0_4px_16px_rgba(139,92,246,0.08),inset_0_1px_0_rgba(255,255,255,1)] text-[13px] font-semibold text-violet-700 animate-fade-up" style="animation-delay:0.1s;">
+            <i class="fas fa-sparkles text-amber-400 text-xs"></i>
+            Trusted by 100+ Pageants Worldwide
+          </div>
+
+          <!-- Title -->
+          <h1 class="text-[2.8rem] sm:text-5xl md:text-[4.2rem] font-black leading-[1.08] font-['Playfair_Display'] tracking-tight">
+            <span class="block bg-gradient-to-r from-violet-600 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-fade-up" style="animation-delay:0.2s;">
+              Event Fair
+            </span>
+            <span class="block text-[1.7rem] sm:text-3xl md:text-[2.5rem] text-gray-800 mt-4 font-bold tracking-tight animate-fade-up" style="animation-delay:0.3s;">
+              Judge Scoring Tabulation System
+            </span>
+          </h1>
+
+          <!-- Subtitle -->
+          <p class="mt-7 text-[16px] sm:text-lg md:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto font-medium animate-fade-up" style="animation-delay:0.4s;">
+            The most elegant, real-time, and transparent judging platform for beauty pageants, talent competitions, and more.
+          </p>
+
+          <!-- CTAs -->
+          <div class="mt-11 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style="animation-delay:0.5s;">
+            <a href="#features" class="group inline-flex items-center gap-3 px-9 py-4 bg-gradient-to-r from-violet-500 via-purple-500 to-pink-500 text-white font-semibold text-[15px] rounded-2xl shadow-[0_8px_28px_rgba(236,72,153,0.32)] hover:shadow-[0_12px_36px_rgba(236,72,153,0.42)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300">
+              <i class="fas fa-crown group-hover:rotate-12 transition duration-300"></i>
+              Explore Features
+            </a>
+            <button id="openLoginHero" type="button" class="inline-flex items-center gap-3 px-9 py-4 bg-white/80 backdrop-blur-xl border border-white/95 text-violet-700 font-semibold text-[15px] rounded-2xl shadow-[0_4px_16px_rgba(139,92,246,0.08),inset_0_1px_0_rgba(255,255,255,1)] hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">
+              <i class="fas fa-play-circle"></i>
+              Sign In
+            </button>
+          </div>
+
+          <!-- Stats -->
+          <div class="mt-14 grid grid-cols-3 gap-3 sm:gap-5 max-w-md mx-auto">
+            <div class="p-4 sm:p-5 rounded-2xl bg-white/70 backdrop-blur-xl border border-white/95 shadow-[0_4px_16px_rgba(139,92,246,0.06),inset_0_1px_0_rgba(255,255,255,1)] hover:scale-105 transition-transform duration-300 animate-fade-up" style="animation-delay:0.55s;">
+              <div class="text-xl sm:text-2xl md:text-[1.7rem] font-bold text-violet-600">500+</div>
+              <p class="text-[10px] sm:text-[11px] text-gray-500 mt-1 font-medium">Pageants</p>
+            </div>
+            <div class="p-4 sm:p-5 rounded-2xl bg-white/70 backdrop-blur-xl border border-white/95 shadow-[0_4px_16px_rgba(236,72,153,0.06),inset_0_1px_0_rgba(255,255,255,1)] hover:scale-105 transition-transform duration-300 animate-fade-up" style="animation-delay:0.65s;">
+              <div class="text-xl sm:text-2xl md:text-[1.7rem] font-bold text-pink-500">50K+</div>
+              <p class="text-[10px] sm:text-[11px] text-gray-500 mt-1 font-medium">Scores</p>
+            </div>
+            <div class="p-4 sm:p-5 rounded-2xl bg-white/70 backdrop-blur-xl border border-white/95 shadow-[0_4px_16px_rgba(245,158,11,0.06),inset_0_1px_0_rgba(255,255,255,1)] hover:scale-105 transition-transform duration-300 animate-fade-up" style="animation-delay:0.75s;">
+              <div class="text-xl sm:text-2xl md:text-[1.7rem] font-bold text-amber-500">100%</div>
+              <p class="text-[10px] sm:text-[11px] text-gray-500 mt-1 font-medium">Fairness</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="py-28 relative">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <p class="text-[12px] font-semibold tracking-[0.18em] text-violet-500 uppercase">Royal Features</p>
+      <h2 class="mt-4 text-4xl md:text-5xl font-black font-['Playfair_Display'] text-gray-900 tracking-tight">
+        Designed for <span class="bg-gradient-to-r from-violet-600 to-pink-500 bg-clip-text text-transparent">Flawless Judging</span>
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-16">
+        <div class="group p-8 rounded-[28px] bg-white/60 backdrop-blur-2xl border border-white/95 shadow-[0_8px_32px_rgba(139,92,246,0.06),inset_0_1px_0_rgba(255,255,255,1)] hover:shadow-[0_16px_48px_rgba(139,92,246,0.12)] hover:-translate-y-1.5 transition-all duration-400">
+          <div class="w-14 h-14 mx-auto mb-6 bg-gradient-to-br from-violet-500 to-violet-600 rounded-2xl flex items-center justify-center shadow-[0_6px_20px_rgba(139,92,246,0.35)] group-hover:scale-110 transition duration-300">
+            <i class="fas fa-bolt text-xl text-white"></i>
+          </div>
+          <h3 class="text-[17px] font-bold text-gray-800">Live Real-Time Scoring</h3>
+          <p class="mt-2.5 text-[13.5px] text-gray-500 leading-relaxed">Scores appear instantly across all devices</p>
+        </div>
+
+        <div class="group p-8 rounded-[28px] bg-white/60 backdrop-blur-2xl border border-white/95 shadow-[0_8px_32px_rgba(168,85,247,0.06),inset_0_1px_0_rgba(255,255,255,1)] hover:shadow-[0_16px_48px_rgba(168,85,247,0.12)] hover:-translate-y-1.5 transition-all duration-400">
+          <div class="w-14 h-14 mx-auto mb-6 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-[0_6px_20px_rgba(168,85,247,0.35)] group-hover:scale-110 transition duration-300">
+            <i class="fas fa-file-shield text-xl text-white"></i>
+          </div>
+          <h3 class="text-[17px] font-bold text-gray-800">Fully Auditable</h3>
+          <p class="mt-2.5 text-[13.5px] text-gray-500 leading-relaxed">Every score logged & verifiable forever</p>
+        </div>
+
+        <div class="group p-8 rounded-[28px] bg-white/60 backdrop-blur-2xl border border-white/95 shadow-[0_8px_32px_rgba(236,72,153,0.06),inset_0_1px_0_rgba(255,255,255,1)] hover:shadow-[0_16px_48px_rgba(236,72,153,0.12)] hover:-translate-y-1.5 transition-all duration-400">
+          <div class="w-14 h-14 mx-auto mb-6 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-[0_6px_20px_rgba(236,72,153,0.35)] group-hover:scale-110 transition duration-300">
+            <i class="fas fa-trophy text-xl text-white"></i>
+          </div>
+          <h3 class="text-[17px] font-bold text-gray-800">Auto Ranking</h3>
+          <p class="mt-2.5 text-[13.5px] text-gray-500 leading-relaxed">Winners calculated in seconds</p>
+        </div>
+
+        <div class="group p-8 rounded-[28px] bg-white/60 backdrop-blur-2xl border border-white/95 shadow-[0_8px_32px_rgba(244,63,94,0.06),inset_0_1px_0_rgba(255,255,255,1)] hover:shadow-[0_16px_48px_rgba(244,63,94,0.12)] hover:-translate-y-1.5 transition-all duration-400">
+          <div class="w-14 h-14 mx-auto mb-6 bg-gradient-to-br from-rose-500 to-rose-600 rounded-2xl flex items-center justify-center shadow-[0_6px_20px_rgba(244,63,94,0.35)] group-hover:scale-110 transition duration-300">
+            <i class="fas fa-file-export text-xl text-white"></i>
+          </div>
+          <h3 class="text-[17px] font-bold text-gray-800">Export Results</h3>
+          <p class="mt-2.5 text-[13.5px] text-gray-500 leading-relaxed">Beautiful PDFs & Excel reports</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="py-28">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <p class="text-[12px] font-semibold tracking-[0.18em] text-violet-500 uppercase">Simple Royal Process</p>
+      <h2 class="mt-4 text-4xl md:text-5xl font-black font-['Playfair_Display'] text-gray-900 tracking-tight">
+        From Setup to <span class="bg-gradient-to-r from-violet-600 to-pink-500 bg-clip-text text-transparent">Coronation</span>
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+        <div class="p-9 rounded-[28px] bg-white/60 backdrop-blur-2xl border border-white/95 shadow-[0_8px_32px_rgba(139,92,246,0.06),inset_0_1px_0_rgba(255,255,255,1)] hover:shadow-[0_16px_40px_rgba(139,92,246,0.1)] hover:-translate-y-1 transition-all">
+          <div class="w-16 h-16 mx-auto mb-7 bg-gradient-to-br from-violet-500 to-purple-500 rounded-full flex items-center justify-center text-[22px] font-black text-white shadow-[0_8px_24px_rgba(139,92,246,0.35)]">
+            1
+          </div>
+          <h3 class="text-xl font-bold text-gray-800">Create Your Event</h3>
+          <p class="mt-3 text-[14px] text-gray-500">Add queens, judges & criteria in minutes</p>
+        </div>
+        <div class="p-9 rounded-[28px] bg-white/60 backdrop-blur-2xl border border-white/95 shadow-[0_8px_32px_rgba(168,85,247,0.06),inset_0_1px_0_rgba(255,255,255,1)] hover:shadow-[0_16px_40px_rgba(168,85,247,0.1)] hover:-translate-y-1 transition-all">
+          <div class="w-16 h-16 mx-auto mb-7 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-[22px] font-black text-white shadow-[0_8px_24px_rgba(168,85,247,0.35)]">
+            2
+          </div>
+          <h3 class="text-xl font-bold text-gray-800">Judge Live</h3>
+          <p class="mt-3 text-[14px] text-gray-500">Real-time scoring with instant sync</p>
+        </div>
+        <div class="p-9 rounded-[28px] bg-white/60 backdrop-blur-2xl border border-white/95 shadow-[0_8px_32px_rgba(236,72,153,0.06),inset_0_1px_0_rgba(255,255,255,1)] hover:shadow-[0_16px_40px_rgba(236,72,153,0.1)] hover:-translate-y-1 transition-all">
+          <div class="w-16 h-16 mx-auto mb-7 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full flex items-center justify-center text-[22px] font-black text-white shadow-[0_8px_24px_rgba(236,72,153,0.35)]">
+            3
+          </div>
+          <h3 class="text-xl font-bold text-gray-800">Crown the Winner</h3>
+          <p class="mt-3 text-[14px] text-gray-500">Accurate results ready to announce</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-28">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <p class="text-[12px] font-semibold tracking-[0.18em] text-violet-500 uppercase">Your Questions Answered</p>
+        <h2 class="mt-3 text-3xl md:text-4xl font-black font-['Playfair_Display'] text-gray-900 tracking-tight">
+          Frequently Asked <span class="bg-gradient-to-r from-violet-600 to-pink-500 bg-clip-text text-transparent">Questions</span>
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        <details class="group rounded-2xl bg-white/60 backdrop-blur-2xl border border-white/95 shadow-[0_4px_24px_rgba(139,92,246,0.06),inset_0_1px_0_rgba(255,255,255,1)] overflow-hidden">
+          <summary class="flex items-center justify-between px-7 py-5 cursor-pointer list-none font-semibold text-gray-800 text-[15px]">
+            <span class="flex items-center gap-3"><i class="fas fa-crown text-violet-500"></i> How fast can I set up a pageant?</span>
+            <i class="fas fa-chevron-down text-gray-400 group-open:rotate-180 transition duration-300"></i>
+          </summary>
+          <div class="px-7 pb-5 text-[14px] text-gray-500">Most pageants are ready in under 10 minutes.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- TERMS & PRIVACY -->
+  <section id="policies" class="py-28">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <p class="text-[12px] font-semibold tracking-[0.18em] text-violet-500 uppercase">Legal & Transparency</p>
+        <h2 class="mt-3 text-3xl md:text-4xl font-black font-['Playfair_Display'] text-gray-900 tracking-tight">
+          Terms, Conditions & <span class="bg-gradient-to-r from-violet-600 to-pink-500 bg-clip-text text-transparent">Privacy</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="rounded-[28px] bg-white/60 backdrop-blur-2xl border border-white/95 shadow-[0_8px_32px_rgba(139,92,246,0.06),inset_0_1px_0_rgba(255,255,255,1)] overflow-hidden">
+          <div class="p-6 bg-gradient-to-r from-violet-500 to-purple-500">
+            <div class="flex items-center gap-3">
+              <i class="fas fa-file-contract text-2xl text-white"></i>
+              <h3 class="text-xl font-bold text-white">Terms & Conditions</h3>
+            </div>
+          </div>
+          <div class="p-7">
+            <button class="w-full mb-4 px-5 py-2.5 bg-violet-50/90 border border-violet-100 text-violet-700 font-semibold rounded-xl hover:bg-violet-100 transition text-[14px]" onclick="document.getElementById('terms-description').classList.toggle('hidden')">
+              <i class="fas fa-eye mr-2"></i> View Terms
+            </button>
+            <div id="terms-description" class="hidden space-y-3 text-[13.5px] text-gray-600 leading-relaxed">
+              <p><strong class="text-gray-800">Last Updated:</strong> April 2026</p>
+              <p>By using EventFair, you agree to these terms and conditions. Our platform is designed to provide fair and transparent judging for pageants and competitions. Users must be at least 18 years old to create an event.</p>
+              <p><strong class="text-gray-800">Responsibilities:</strong> Event organizers are responsible for ensuring judges meet eligibility requirements. All scores and decisions made through our platform are binding and recorded permanently.</p>
+              <p><strong class="text-gray-800">Prohibited Activities:</strong> Users may not attempt to manipulate scores, use fraudulent accounts, or misuse the platform in any way. Violation of these terms may result in account suspension.</p>
+              <p><strong class="text-gray-800">Liability:</strong> EventFair provides the platform "as is" and is not liable for disputes arising from judging decisions, though we ensure the integrity of score recording.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-[28px] bg-white/60 backdrop-blur-2xl border border-white/95 shadow-[0_8px_32px_rgba(236,72,153,0.06),inset_0_1px_0_rgba(255,255,255,1)] overflow-hidden">
+          <div class="p-6 bg-gradient-to-r from-pink-500 to-rose-500">
+            <div class="flex items-center gap-3">
+              <i class="fas fa-shield-alt text-2xl text-white"></i>
+              <h3 class="text-xl font-bold text-white">Privacy Policy</h3>
+            </div>
+          </div>
+          <div class="p-7">
+            <button class="w-full mb-4 px-5 py-2.5 bg-pink-50/90 border border-pink-100 text-pink-700 font-semibold rounded-xl hover:bg-pink-100 transition text-[14px]" onclick="document.getElementById('privacy-description').classList.toggle('hidden')">
+              <i class="fas fa-eye mr-2"></i> View Privacy
+            </button>
+            <div id="privacy-description" class="hidden space-y-3 text-[13.5px] text-gray-600 leading-relaxed">
+              <p><strong class="text-gray-800">Last Updated:</strong> April 2026</p>
+              <p><strong class="text-gray-800">Data Collection:</strong> We collect information necessary to operate our platform, including names, email addresses, and event details. Score data is stored securely for audit purposes.</p>
+              <p><strong class="text-gray-800">Data Usage:</strong> Your information is used solely to facilitate judging events and maintain audit trails. We never sell personal data to third parties.</p>
+              <p><strong class="text-gray-800">Security:</strong> We use industry-standard encryption and security practices to protect your data. All stored scores are encrypted and access-controlled.</p>
+              <p><strong class="text-gray-800">Retention:</strong> Score data is retained permanently for audit purposes. User account data is retained while your account is active.</p>
+              <p><strong class="text-gray-800">Your Rights:</strong> You may request access to your personal data or request account deletion at any time by contacting support.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANIMATIONS -->
+  <style>
+    @keyframes blob-1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(45px, -30px) scale(1.07); }
+      66% { transform: translate(-20px, 35px) scale(0.97); }
+    }
+    @keyframes blob-2 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-55px, 30px); }
+    }
+    @keyframes blob-3 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(40px, -45px); }
+    }
+    @keyframes pulse-slow {
+      0%, 100% { opacity: 0.45; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.05); }
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+
+    /* Hero entrance animations */
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fade-down {
+      from {
+        opacity: 0;
+        transform: translateY(-16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Soft floating glass box */
+    @keyframes hero-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* Soft shine sweep across the glass */
+    @keyframes shine {
+      0% { transform: translateX(-120%) skewX(-12deg); }
+      100% { transform: translateX(220%) skewX(-12deg); }
+    }
+
+    .animate-blob-1 { animation: blob-1 20s ease-in-out infinite; }
+    .animate-blob-2 { animation: blob-2 24s ease-in-out infinite; }
+    .animate-blob-3 { animation: blob-3 28s ease-in-out infinite; }
+    .animate-pulse-slow { animation: pulse-slow 14s ease-in-out infinite; }
+    .animate-twinkle { animation: twinkle 4s ease-in-out infinite; }
+
+    .animate-fade-up {
+      opacity: 0;
+      animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .animate-fade-down {
+      opacity: 0;
+      animation: fade-down 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .animate-hero-float {
+      animation: hero-float 7s ease-in-out infinite;
+    }
+    .animate-shine {
+      animation: shine 7s ease-in-out infinite;
+      animation-delay: 1.5s;
+    }
+
+    details summary::-webkit-details-marker { display: none; }
+  </style>
+
+{{> footer}}
+</body>
+</html>
+
+<!-- Login Modal (embedded from login.xian design) -->
+<div id="login-modal" class="fixed inset-0 z-60 hidden items-center justify-center" style="z-index:99999;">
+  <div id="login-backdrop" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+  <div class="relative z-10 w-full max-w-[420px] px-5">
+    <div class="relative rounded-[32px] bg-white/95 border border-white/90 shadow-[0_40px_80px_rgba(0,0,0,0.15)] overflow-hidden">
+      <button id="closeLogin" onclick="document.getElementById('login-modal').classList.add('hidden'); document.getElementById('login-modal').classList.remove('flex'); document.body.style.overflow=''; (document.querySelector('header')||{}).style.pointerEvents='';" class="absolute right-3 top-3 text-gray-600 hover:text-gray-900 text-xl">&times;</button>
+      <div class="px-6 py-8">
+        <div class="text-center mb-6">
+          <div class="mx-auto w-16 h-16 bg-gradient-to-br from-violet-500 via-purple-500 to-pink-500 rounded-[18px] flex items-center justify-center shadow-[0_8px_28px_rgba(139,92,246,0.35)] mb-4">
+            <i class="fas fa-crown text-2xl text-yellow-100"></i>
+          </div>
+          <h2 class="text-2xl font-black font-['Playfair_Display']">Sign In</h2>
+          <p class="text-sm text-gray-600 mt-1">Judge Scoring Tabulation System</p>
+        </div>
+
+        <form method="POST" action="/login" class="space-y-4">
+          <div>
+            <label class="text-sm font-semibold text-violet-700">Email</label>
+            <input type="email" name="email" required placeholder="admin@eventfair.com" class="w-full mt-2 px-4 py-3 border rounded-xl outline-none focus:ring-2 focus:ring-violet-200" />
+          </div>
+          <div>
+            <label class="text-sm font-semibold text-purple-700">Password</label>
+            <input type="password" name="password" required placeholder="Enter your password" class="w-full mt-2 px-4 py-3 border rounded-xl outline-none focus:ring-2 focus:ring-purple-200" />
+          </div>
+          <div>
+            <button type="submit" class="w-full py-3 bg-gradient-to-r from-violet-500 to-pink-500 text-white rounded-xl font-semibold">Sign In</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    const modal = document.getElementById('login-modal');
+    const openTop = document.getElementById('openLoginTop');
+    const openHero = document.getElementById('openLoginHero');
+    const closeBtn = document.getElementById('closeLogin');
+    const backdrop = document.getElementById('login-backdrop');
+
+    // login modal handlers
+    const openLogin = () => { modal.classList.remove('hidden'); modal.classList.add('flex'); document.body.style.overflow = 'hidden'; };
+    const closeLogin = () => { modal.classList.add('hidden'); modal.classList.remove('flex'); document.body.style.overflow = ''; };
+
+    if (openTop) openTop.addEventListener('click', openLogin);
+    if (openHero) openHero.addEventListener('click', openLogin);
+    if (closeBtn) closeBtn.addEventListener('click', closeLogin);
+    if (backdrop) backdrop.addEventListener('click', closeLogin);
+
+    // register modal handlers
+    const regModal = document.getElementById('register-modal');
+    const openRegTop = document.getElementById('openRegisterTop');
+    const openRegHero = document.getElementById('openRegisterHero');
+    const closeRegBtn = document.getElementById('closeRegister');
+    const regBackdrop = document.getElementById('register-backdrop');
+
+    const openRegister = () => { if (regModal) { regModal.classList.remove('hidden'); regModal.classList.add('flex'); document.body.style.overflow = 'hidden'; } };
+    const closeRegister = () => { if (regModal) { regModal.classList.add('hidden'); regModal.classList.remove('flex'); document.body.style.overflow = ''; } };
+
+    if (openRegTop) openRegTop.addEventListener('click', openRegister);
+    if (openRegHero) openRegHero.addEventListener('click', openRegister);
+    if (closeRegBtn) closeRegBtn.addEventListener('click', closeRegister);
+    if (regBackdrop) regBackdrop.addEventListener('click', closeRegister);
+
+    // close on Escape (closes whichever modal is open)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLogin();
+        closeRegister();
+      }
+    });
+  })();
+</script>
+
+<!-- Register Modal -->
+<div id="register-modal" class="fixed inset-0 z-60 hidden items-center justify-center" style="z-index:99999;">
+  <div id="register-backdrop" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+  <div class="relative z-10 w-full max-w-[480px] px-5">
+    <div class="relative rounded-[32px] bg-white/95 border border-white/90 shadow-[0_40px_80px_rgba(0,0,0,0.15)] overflow-hidden">
+      <button id="closeRegister" onclick="document.getElementById('register-modal').classList.add('hidden'); document.getElementById('register-modal').classList.remove('flex'); document.body.style.overflow=''; (document.querySelector('header')||{}).style.pointerEvents='';" class="absolute right-3 top-3 text-gray-600 hover:text-gray-900 text-xl">&times;</button>
+      <div class="px-6 py-8">
+        <div class="text-center mb-6">
+          <h2 class="text-2xl font-black">Create Account</h2>
+          <p class="text-sm text-gray-600 mt-1">Register as a judge</p>
+        </div>
+
+        <form method="POST" action="/register" class="space-y-4">
+          <div>
+            <label class="text-sm font-semibold text-gray-700">Full Name</label>
+            <input type="text" name="name" required placeholder="Your full name" class="w-full mt-2 px-4 py-3 border rounded-xl outline-none focus:ring-2 focus:ring-violet-200" />
+          </div>
+          <div>
+            <label class="text-sm font-semibold text-violet-700">Email</label>
+            <input type="email" name="email" required placeholder="you@example.com" class="w-full mt-2 px-4 py-3 border rounded-xl outline-none focus:ring-2 focus:ring-violet-200" />
+          </div>
+          <div>
+            <label class="text-sm font-semibold text-purple-700">Password</label>
+            <input type="password" name="password" required placeholder="Create a password" class="w-full mt-2 px-4 py-3 border rounded-xl outline-none focus:ring-2 focus:ring-purple-200" />
+          </div>
+          <div>
+            <button type="submit" class="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-xl font-semibold">Create Account</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

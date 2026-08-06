@@ -1,0 +1,194 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Install project dependencies",
+			"type": "shell",
+			"command": "npm install --no-audit --no-fund --legacy-peer-deps",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Install project dependencies",
+			"type": "shell",
+			"command": "npm install --no-audit --no-fund --legacy-peer-deps",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Verify judge insert",
+			"type": "shell",
+			"command": "node --input-type=module -e \"import 'dotenv/config'; import { sequelize } from './models/db.js'; import { User } from './models/userModel.js'; try { await sequelize.authenticate(); console.log('AUTH_OK'); const result = await User.create({ name: 'Test Judge', email: 'testjudge@sandbox.com', password: 'x', role: 'judge', isActive: true }); console.log(JSON.stringify(result.toJSON())); } catch (err) { console.error(err); process.exit(1); } finally { await sequelize.close(); }\"",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Verify judge insert",
+			"type": "shell",
+			"command": "node debug-db.mjs",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Migrate Supabase schema",
+			"type": "shell",
+			"command": "node migrate.js",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Seed Supabase database",
+			"type": "shell",
+			"command": "node seed.js",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Migrate Supabase schema",
+			"type": "shell",
+			"command": "node migrate.js",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Verify direct insert",
+			"type": "shell",
+			"command": "node -e \"import('dotenv').then(({config})=>config()); import { sequelize } from './models/db.js'; import { User } from './models/userModel.js'; try { await sequelize.authenticate(); const result = await User.create({ name: 'Supabase Test', email: 'supabasetest@example.com', password: 'x', role: 'judge', isActive: true }); console.log('CREATED', result.id); } catch (err) { console.error(err); process.exit(1); } finally { await sequelize.close(); }\"",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Verify direct insert",
+			"type": "shell",
+			"command": "node verify-write.mjs",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Verify direct insert",
+			"type": "shell",
+			"command": "cmd /d /c \"cd /d c:\\Users\\Administrator\\OneDrive\\Desktop\\eventtabulationsys && node verify-write.mjs\"",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Free port 3000",
+			"type": "shell",
+			"command": "powershell -NoProfile -Command \"Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }\"",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Start app",
+			"type": "shell",
+			"command": "npm run xian",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Start app",
+			"type": "shell",
+			"command": "npm run xian",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Start app",
+			"type": "shell",
+			"command": "npm run xian",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Start app",
+			"type": "shell",
+			"command": "npm run xian",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Start app",
+			"type": "shell",
+			"command": "npm run xian",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Start app",
+			"type": "shell",
+			"command": "npm run xian",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Start app",
+			"type": "shell",
+			"command": "npm run xian",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Sync all Supabase tables",
+			"type": "shell",
+			"command": "node migrate.js",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Verify Supabase writes",
+			"type": "shell",
+			"command": "node --input-type=module -e \"import { Event, Round, Participant, Criteria, Score, User } from './models/relationships.js'; const name='Smoke Event '+Date.now(); const event=await Event.create({ name, description:'smoke test', date:new Date(), venue:'Supabase', status:'upcoming', isPublic:true }); console.log('event-created', event.id, event.name); const round=await event.createRound({ name:'Round 1', description:'smoke', status:'open' }); console.log('round-created', round.id); const participant=await Participant.create({ name:'Smoke Participant', code:'SP01', eventId:event.id }); console.log('participant-created', participant.id); const criterion=await round.createCriteria({ name:'Creativity', description:'test', maxScore:10 }); console.log('criteria-created', criterion.id); const user=await User.findOne({ where: { role: 'judge' } }); if (user) { const score=await Score.create({ participantId: participant.id, criteriaId: criterion.id, judgeId: user.id, roundId: round.id, score: 8 }); console.log('score-created', score.id); }\"",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Run Supabase write verification",
+			"type": "shell",
+			"command": "node .\\verify-write.mjs",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Verify Supabase auth",
+			"type": "shell",
+			"command": "node -e \"import('dotenv').then(({config})=>config()); import('./models/db.js').then(async ({ sequelize }) => { await sequelize.authenticate(); console.log('AUTH_OK'); await sequelize.close(); }).catch(err => { console.error(err); process.exit(1); })\"",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Verify Supabase auth",
+			"type": "shell",
+			"command": "node verify-supabase-auth.mjs",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Start app with Supabase",
+			"type": "shell",
+			"command": "node index.js",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Start app and show URL",
+			"type": "shell",
+			"command": "node index.js",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Start app on 3000",
+			"type": "shell",
+			"command": "node index.js",
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Verify Supabase connection",
+			"type": "shell",
+			"command": "node verify-supabase-auth.mjs",
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}

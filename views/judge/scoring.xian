@@ -1,0 +1,159 @@
+{{> header}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<body class="bg-gradient-to-br from-violet-50 via-purple-50 to-pink-50 min-h-screen font-sans">
+
+  <!-- Elegant Judge Navbar -->
+  <nav class="bg-gradient-to-r from-violet-700 via-purple-700 to-pink-700 text-white shadow-2xl">
+    <div class="container mx-auto px-8 py-5 flex justify-between items-center">
+      <div class="flex items-center gap-4">
+        <i class="fas fa-gavel text-3xl"></i>
+        <div>
+          <h1 class="text-2xl font-extrabold tracking-tight">Scoring Panel</h1>
+          <p class="text-pink-200 text-sm">{{round.name}} • {{round.event.name}}</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="/judge/dashboard" class="hover:text-pink-200 transition flex items-center gap-2">
+          <i class="fas fa-tachometer-alt"></i> Dashboard
+        </a>
+        <a href="/logout" class="bg-rose-500 hover:bg-rose-600 px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105 transition">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mx-auto px-8 py-12">
+
+    <!-- Round Status Alert -->
+    {{#unless (eq round.status 'open')}}
+      <div class="bg-amber-50 border-l-4 border-amber-500 text-amber-800 p-8 mb-10 rounded-r-2xl shadow-lg flex items-center gap-5">
+        <i class="fas fa-exclamation-triangle text-5xl text-amber-600"></i>
+        <div>
+          <h3 class="text-2xl font-bold">This round is currently closed</h3>
+          <p class="text-lg mt-1">Status: <span class="font-bold capitalize">{{round.status}}</span> • Scoring is not allowed at this time.</p>
+        </div>
+      </div>
+    {{/unless}}
+
+    <!-- Criteria Summary -->
+    <div class="bg-white rounded-2xl shadow-xl border border-purple-100 p-8 mb-10">
+      <h3 class="text-3xl font-extrabold text-purple-800 mb-6 flex items-center gap-3">
+        <i class="fas fa-list-ol text-pink-600"></i> Scoring Criteria
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {{#each round.criteria}}
+          <div class="bg-gradient-to-r from-violet-50 to-pink-50 rounded-xl p-6 border border-purple-200 text-center hover:shadow-lg transform hover:scale-105 transition">
+            <p class="text-xl font-bold text-purple-800">{{name}}</p>
+            <p class="text-3xl font-black text-pink-600 mt-2">{{weight}}%</p>
+            <p class="text-sm text-gray-600">Max Score: <span class="font-bold">{{maxScore}}</span></p>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+
+    <!-- Scoring Table -->
+    {{#if (eq round.status 'open')}}
+      <form method="POST" action="/judge/rounds/{{round.id}}/scoring" class="bg-white rounded-2xl shadow-2xl border border-purple-100 overflow-hidden">
+        <div class="p-8 border-b border-purple-100">
+          <h3 class="text-3xl font-extrabold text-purple-800 flex items-center gap-3">
+            <i class="fas fa-edit text-pink-600"></i> Enter Your Scores
+          </h3>
+          <p class="text-gray-600 mt-2">Please provide fair and accurate scores for each participant</p>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead class="bg-gradient-to-r from-violet-100 to-pink-100">
+              <tr>
+                <th class="px-6 py-5 text-left text-purple-800 font-bold">Photo</th>
+                <th class="px-6 py-5 text-left text-purple-800 font-bold">Participant</th>
+                <th class="px-6 py-5 text-left text-purple-800 font-bold">Barangay</th>
+                {{#each round.criteria}}
+                  <th class="px-6 py-5 text-center text-purple-800 font-bold">
+                    {{name}}<br>
+                    <span class="text-sm font-medium text-pink-600">(0 – {{maxScore}})</span>
+                  </th>
+                {{/each}}
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-purple-100">
+              {{#each round.participants}}
+                <tr class="hover:bg-violet-50/50 transition">
+                  <td class="px-6 py-6">
+                    <div class="w-20 h-20 rounded-xl overflow-hidden ring-4 ring-purple-200 shadow-lg">
+                      {{#if photo}}
+                        <img src="{{photo}}" alt="{{name}}" class="w-full h-full object-cover">
+                      {{else}}
+                        <div class="w-full h-full bg-gradient-to-br from-purple-200 to-pink-200 flex items-center justify-center">
+                          <i class="fas fa-user text-4xl text-white opacity-70"></i>
+                        </div>
+                      {{/if}}
+                    </div>
+                  </td>
+                  <td class="px-6 py-6">
+                    <p class="font-bold text-xl text-purple-800">#{{participantNumber}}</p>
+                    <p class="text-lg font-semibold text-gray-700">{{name}}</p>
+                  </td>
+                  <td class="px-6 py-6 text-gray-700 font-medium">{{barangay}}</td>
+                  {{#each ../round.criteria}}
+                    <td class="px-6 py-6 text-center">
+                      {{#with (lookup ../../scoresMap (concat ../id '_' id))}}
+                        <input 
+                          type="number" 
+                          name="scores[{{../../id}}_{{../id}}]" 
+                          step="0.01" 
+                          min="0" 
+                          max="{{../maxScore}}"
+                          value="{{score}}"
+                          required
+                          class="w-28 px-4 py-3 text-lg font-medium text-center border-2 border-purple-200 rounded-xl focus:border-violet-600 focus:ring-4 focus:ring-violet-100 transition"
+                          placeholder="0.00"
+                        >
+                      {{else}}
+                        <input 
+                          type="number" 
+                          name="scores[{{../id}}_{{id}}]" 
+                          step="0.01" 
+                          min="0" 
+                          max="{{maxScore}}"
+                          required
+                          class="w-28 px-4 py-3 text-lg font-medium text-center border-2 border-purple-200 rounded-xl focus:border-violet-600 focus:ring-4 focus:ring-violet-100 transition"
+                          placeholder="0.00"
+                        >
+                      {{/with}}
+                    </td>
+                  {{/each}}
+                </tr>
+              {{else}}
+                <tr>
+                  <td colspan="{{add round.criteria.length 3}}" class="text-center py-20 text-gray-500">
+                    <i class="fas fa-users text-8xl text-purple-200 mb-4"></i>
+                    <p class="text-2xl font-bold">No participants assigned</p>
+                    <p class="mt-2">This round has no contestants yet.</p>
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="p-8 bg-gradient-to-r from-violet-50 to-pink-50 flex justify-end gap-6">
+          <a href="/judge/dashboard" 
+             class="px-10 py-5 bg-gray-200 text-gray-800 font-bold rounded-xl hover:bg-gray-300 transform hover:scale-105 transition text-lg flex items-center gap-3">
+            <i class="fas fa-times-circle"></i> Cancel
+          </a>
+          <button type="submit"
+                  class="px-12 py-5 bg-gradient-to-r from-violet-600 to-pink-600 text-white font-bold rounded-xl shadow-lg hover:shadow-2xl hover:shadow-pink-500/40 transform hover:scale-110 transition text-xl flex items-center gap-3">
+            <i class="fas fa-paper-plane"></i> Submit All Scores
+          </button>
+        </div>
+      </form>
+    {{/if}}
+
+  </main>
+
+  {{> footer}}
+</body>

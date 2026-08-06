@@ -1,0 +1,142 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ios-violet: #8b5cf6;
+    --ios-pink: #ec4899;
+    --ios-glow: rgba(236, 72, 153, 0.25);
+  }
+
+  .ios-sidebar {
+    width: 280px;
+    min-height: 100vh;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    box-sizing: border-box;
+  }
+
+  /* Custom iOS Glass Scrollbar */
+  .ios-sidebar-scroll::-webkit-scrollbar {
+    width: 4px;
+  }
+  .ios-sidebar-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .ios-sidebar-scroll::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.15);
+    border-radius: 10px;
+  }
+</style>
+
+<aside class="ios-sidebar relative flex flex-col bg-white/70 backdrop-blur-3xl border-r border-white/80 text-slate-800 shadow-[10px_0_30px_rgba(139,92,246,0.06)] z-20 overflow-hidden shrink-0">
+  
+  <!-- Light Ambient Glow behind Sidebar Header -->
+  <div class="absolute -top-12 -left-12 w-48 h-48 bg-violet-300/30 blur-3xl rounded-full pointer-events-none"></div>
+  <div class="absolute top-1/3 -right-12 w-40 h-40 bg-pink-300/25 blur-3xl rounded-full pointer-events-none"></div>
+
+  <!-- Header: iOS Dynamic Brand Pill -->
+  <div class="p-6 pb-4 border-b border-slate-100/80 relative z-10">
+    <div class="flex flex-col items-center">
+      <a href="/admin/dashboard" class="group flex items-center gap-3 px-5 py-3 rounded-2xl bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30 hover:scale-[1.02] active:scale-95 transition-all duration-300">
+        <i class="fas fa-crown text-pink-200 text-lg group-hover:rotate-12 transition-transform"></i>
+        <span class="font-extrabold text-lg tracking-tight">BarangayFair</span>
+      </a>
+      <span class="mt-2 text-[10px] font-extrabold tracking-[0.2em] text-violet-600 uppercase bg-violet-100/80 px-3 py-1 rounded-full border border-violet-200/50">
+        ADMIN PORTAL
+      </span>
+    </div>
+  </div>
+
+  <!-- User Info Card: iOS Glass Widget -->
+  <div class="px-5 py-4 border-b border-slate-100/80 relative z-10">
+    <div class="p-3.5 rounded-2xl bg-slate-50/80 border border-white/80 shadow-sm flex items-center gap-3.5 backdrop-blur-md">
+      <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-violet-600 to-pink-500 flex items-center justify-center text-white font-extrabold text-sm shadow-md shadow-pink-500/20 shrink-0">
+        BF
+      </div>
+      <div class="min-w-0 flex-1">
+        <p class="font-bold text-slate-900 text-sm truncate leading-tight">Admin User</p>
+        <p class="text-slate-500 text-xs truncate mt-0.5 font-medium">admin@barangayfair.ph</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Links -->
+  <nav class="flex-1 px-4 py-5 space-y-1.5 overflow-y-auto ios-sidebar-scroll relative z-10">
+    
+    <div class="nav-item">
+      <a href="/admin/dashboard" class="nav-link active flex items-center gap-3.5 px-4 py-3 rounded-2xl text-sm font-bold text-white bg-gradient-to-r from-violet-600 to-pink-600 shadow-lg shadow-violet-500/20 transition-all duration-300">
+        <i class="fas fa-tachometer-alt text-base w-5 text-center"></i>
+        <span>Dashboard</span>
+      </a>
+    </div>
+
+    <div class="nav-item">
+      <a href="/admin/events" class="nav-link flex items-center gap-3.5 px-4 py-3 rounded-2xl text-sm font-semibold text-slate-700 hover:text-violet-700 hover:bg-violet-50/80 transition-all duration-300 group">
+        <i class="fas fa-calendar-alt text-base w-5 text-center text-slate-400 group-hover:text-violet-600 transition-colors"></i>
+        <span>Events</span>
+      </a>
+    </div>
+
+    <div class="nav-item">
+      <a href="/admin/participants" class="nav-link flex items-center gap-3.5 px-4 py-3 rounded-2xl text-sm font-semibold text-slate-700 hover:text-violet-700 hover:bg-violet-50/80 transition-all duration-300 group">
+        <i class="fas fa-users text-base w-5 text-center text-slate-400 group-hover:text-violet-600 transition-colors"></i>
+        <span>Participants</span>
+      </a>
+    </div>
+
+    <div class="nav-item">
+      <a href="/admin/judges" class="nav-link flex items-center gap-3.5 px-4 py-3 rounded-2xl text-sm font-semibold text-slate-700 hover:text-violet-700 hover:bg-violet-50/80 transition-all duration-300 group">
+        <i class="fas fa-gavel text-base w-5 text-center text-slate-400 group-hover:text-violet-600 transition-colors"></i>
+        <span>Judges</span>
+      </a>
+    </div>
+
+    <div class="nav-item">
+      <a href="/admin/score" class="nav-link flex items-center gap-3.5 px-4 py-3 rounded-2xl text-sm font-semibold text-slate-700 hover:text-violet-700 hover:bg-violet-50/80 transition-all duration-300 group">
+        <i class="fas fa-clipboard-check text-base w-5 text-center text-slate-400 group-hover:text-violet-600 transition-colors"></i>
+        <span>Scores</span>
+      </a>
+    </div>
+
+    <div class="nav-item">
+      <a href="/admin/result" class="nav-link flex items-center gap-3.5 px-4 py-3 rounded-2xl text-sm font-semibold text-slate-700 hover:text-violet-700 hover:bg-violet-50/80 transition-all duration-300 group">
+        <i class="fas fa-trophy text-base w-5 text-center text-slate-400 group-hover:text-violet-600 transition-colors"></i>
+        <span>Results</span>
+      </a>
+    </div>
+
+    <!-- Divider -->
+    <div class="my-4 border-t border-slate-100"></div>
+
+    <div class="nav-item">
+      <a href="/logout" class="nav-link logout flex items-center gap-3.5 px-4 py-3 rounded-2xl text-sm font-bold text-rose-600 hover:bg-rose-50/80 transition-all duration-300 group">
+        <i class="fas fa-sign-out-alt text-base w-5 text-center text-rose-500 group-hover:translate-x-0.5 transition-transform"></i>
+        <span>Logout</span>
+      </a>
+    </div>
+
+  </nav>
+
+  <!-- iOS Footer Badge -->
+  <div class="p-4 border-t border-slate-100 relative z-10 bg-slate-50/50 backdrop-blur-md text-center">
+    <p class="text-xs font-bold text-slate-800">BarangayFair</p>
+    <p class="text-[10px] text-slate-400 font-medium mt-0.5">Philippines © 2026</p>
+  </div>
+
+</aside>
+
+<script>
+  // Smooth active highlight handling & subtle hover interactions
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('mouseenter', function() {
+      if (!this.classList.contains('active') && !this.classList.contains('logout')) {
+        this.style.transform = 'translateX(4px)';
+      }
+    });
+    link.addEventListener('mouseleave', function() {
+      if (!this.classList.contains('active')) {
+        this.style.transform = 'translateX(0)';
+      }
+    });
+  });
+</script>

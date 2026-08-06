@@ -1,0 +1,102 @@
+{{> head}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<body class="bg-gradient-to-br from-violet-50 via-purple-50 to-pink-50 min-h-screen font-sans">
+
+  <div class="flex">
+    {{> adminsidebar}}
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8">
+
+      <!-- Header -->
+      <div class="mb-10 bg-gradient-to-r from-violet-700 via-purple-700 to-pink-700 text-white rounded-2xl shadow-2xl p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="flex items-center gap-6">
+          <div class="w-24 h-24 bg-gradient-to-br from-pink-400 to-violet-500 rounded-full flex items-center justify-center shadow-2xl ring-4 ring-pink-300/50">
+            <i class="fas fa-user-plus text-5xl text-white drop-shadow-lg"></i>
+          </div>
+          <div>
+            <h1 class="text-5xl font-extrabold tracking-tight">Add New Participant</h1>
+            <p class="text-pink-200 text-xl mt-2 font-medium">Register a new contestant to the system</p>
+          </div>
+        </div>
+        <div class="text-right">
+          <p class="text-pink-200 text-sm">Welcome back,</p>
+          <p class="text-2xl font-bold">{{user.name}}</p>
+        </div>
+      </div>
+
+      <!-- Back Button -->
+      <div class="mb-6">
+        <a href="/admin/participants" class="inline-flex items-center gap-3 text-violet-700 hover:text-violet-900 font-semibold text-lg hover:-translate-x-1 transition">
+          <i class="fas fa-arrow-left text-xl"></i> Back to Participants
+        </a>
+      </div>
+
+      <!-- Create Form Card – SK Dashboard Style -->
+      <div class="bg-white rounded-2xl shadow-2xl border border-purple-100 p-10 max-w-3xl mx-auto">
+        <form method="POST" action="/admin/participants/create" enctype="multipart/form-data" class="space-y-10">
+
+          <!-- Photo Upload First -->
+          <div class="text-center">
+            <label class="block text-xl font-bold text-purple-800 mb-6">
+              <i class="fas fa-camera text-pink-600 mr-2"></i> Participant Photo
+            </label>
+            <div class="inline-block">
+              <div class="w-48 h-48 bg-gradient-to-br from-purple-200 to-pink-200 rounded-3xl flex items-center justify-center ring-8 ring-purple-100 shadow-2xl mb-6">
+                <i class="fas fa-image text-8xl text-white opacity-60"></i>
+              </div>
+              <input type="file" name="photo" accept="image/*"
+                     class="w-full px-6 py-5 border-2 border-dashed border-purple-300 rounded-xl text-gray-700 file:mr-6 file:py-3 file:px-8 file:rounded-full file:border-0 file:bg-gradient-to-r file:from-violet-600 file:to-pink-600 file:text-white file:font-bold hover:file:from-violet-700 hover:file:to-pink-700 transition">
+              <p class="text-sm text-gray-500 mt-4">JPEG, PNG, GIF • Max 5MB • Optional</p>
+            </div>
+          </div>
+
+          <!-- Name -->
+          <div>
+            <label class="flex items-center gap-3 text-xl font-bold text-purple-800 mb-4">
+              <i class="fas fa-user text-pink-600"></i> Full Name <span class="text-red-600">*</span>
+            </label>
+            <input type="text" name="name" required placeholder="Enter full name of participant"
+                   class="w-full px-6 py-4 border border-purple-200 rounded-xl focus:border-violet-600 focus:ring-4 focus:ring-violet-100 text-lg transition">
+          </div>
+
+          <!-- Barangay -->
+          <div>
+            <label class="flex items-center gap-3 text-xl font-bold text-purple-800 mb-4">
+              <i class="fas fa-map-marker-alt text-pink-600"></i> Barangay <span class="text-red-600">*</span>
+            </label>
+            <input type="text" name="barangay" required placeholder="e.g., Barangay Poblacion"
+                   class="w-full px-6 py-4 border border-purple-200 rounded-xl focus:border-violet-600 focus:ring-4 focus:ring-violet-100 text-lg transition">
+          </div>
+
+          <!-- Participant Number -->
+          <div>
+            <label class="flex items-center gap-3 text-xl font-bold text-purple-800 mb-4">
+              <i class="fas fa-hashtag text-pink-600"></i> Participant Number
+            </label>
+            <input type="text" name="participantNumber" placeholder="Leave empty for auto-generation"
+                   class="w-full px-6 py-4 border border-purple-200 rounded-xl focus:border-violet-600 focus:ring-4 focus:ring-violet-100 text-lg transition">
+            <p class="text-sm text-gray-500 mt-3">System will automatically assign the next number if left blank</p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row gap-5 pt-8">
+            <button type="submit"
+                    class="flex-1 flex items-center justify-center gap-3 bg-gradient-to-r from-violet-600 to-pink-600 text-white font-bold py-5 px-10 rounded-xl shadow-lg hover:shadow-xl hover:shadow-pink-500/40 transform hover:scale-105 transition-all duration-300 text-xl">
+              <i class="fas fa-user-plus"></i> Add Participant
+            </button>
+            <a href="/admin/participants"
+               class="flex-1 flex items-center justify-center gap-3 bg-gray-200 text-gray-800 font-bold py-5 px-10 rounded-xl hover:bg-gray-300 transform hover:scale-105 transition-all duration-300 text-xl">
+              <i class="fas fa-times-circle"></i> Cancel
+            </a>
+          </div>
+
+        </form>
+      </div>
+
+    </main>
+  </div>
+
+  {{> footer}}
+</body>
